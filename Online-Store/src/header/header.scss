@@ -1,0 +1,32 @@
+@import "../mixin.scss";
+.header {
+    padding: 30px 0;
+    border-bottom: 1px solid aliceblue;
+    border-radius: 50px;
+    &__container {
+      @include stretch-wide;
+    }
+    &__logo {
+      display: flex;
+      align-items: center;
+      color: #fff;
+      font-size: 25px;
+      line-height: 30px;
+      letter-spacing: 0.055em;
+    }
+    &__basket{
+      position: relative;
+    }
+    &__basket-amount{
+      color:#fff;
+      background: black;
+      position: absolute;
+      border:1px solid white;
+      border-radius: 100%;
+      @include center;
+      width: 25px;
+      height: 25px;
+      top: 10px;
+      left: 10px;
+    }
+  }
