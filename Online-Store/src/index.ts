@@ -1,7 +1,10 @@
 import "./style.scss";
-import Header from "./header/header";
-import Footer from "./footer/footer";
+import Header from "./components/header/header";
+import Footer from "./components/footer/footer";
+import Main from "./components/main/main";
 const header = new Header();
 header.innerHeader();
+const main = new Main();
+main.appendBody();
 const footer = new Footer();
 footer.innerFooter();
