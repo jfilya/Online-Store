@@ -1,0 +1,10 @@
+@mixin stretch-wide{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+@mixin stretch-lengthwise {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
