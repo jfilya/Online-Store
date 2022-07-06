@@ -35,7 +35,10 @@ body {
   min-width: 320px;
   position: relative;
   overflow-x: hidden;
-  background-color: #fff;
+  background: url("./assets/bg.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center center;
   min-height: 100vh;
   @include stretch-lengthwise;
 }
@@ -55,11 +58,8 @@ button {
 }
 .header {
   padding: 30px 0;
-  background: radial-gradient(
-    50% 8766.71% at 50% 50.34%,
-    #c4ddd7 0%,
-    #507e74 96.64%
-  );
+  border-bottom: 1px solid aliceblue;
+  border-radius: 50px;
   &__container {
     @include stretch-wide;
   }
@@ -73,6 +73,20 @@ button {
   }
 }
 
+.footer {
+    padding:10px 0;
+    border-top: 1px solid white;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    background: black;
+  &__container {
+    @include stretch-wide;
+    p{
+        color:white;
+        font-size: 20px;
+    }
+  }
+}
 
 @media screen and (max-width: 1440px) {
 }
