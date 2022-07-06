@@ -71,6 +71,21 @@ button {
     line-height: 30px;
     letter-spacing: 0.055em;
   }
+  &__basket{
+    position: relative;
+  }
+  &__basket-amount{
+    color:#fff;
+    background: black;
+    position: absolute;
+    border:1px solid white;
+    border-radius: 100%;
+    @include center;
+    width: 25px;
+    height: 25px;
+    top: 10px;
+    left: 10px;
+  }
 }
 
 .footer {
