@@ -1,76 +1,102 @@
-*{
-    box-sizing:border-box;
-    text-size-adjust: none;
+@import "mixin.scss";
+* {
+  box-sizing: border-box;
+  text-size-adjust: none;
 }
-h1, h2, h3, h4, h5, h6, p,a, ul, li, body, input,button{
-    margin:0;
-    padding:0;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+ul,
+li,
+body,
+input,
+button {
+  margin: 0;
+  padding: 0;
 }
-a{
-    text-decoration:none;
-    color:#fff;  
-    cursor:pointer;  
+a {
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
 }
-ul, li{
-    list-style-type: none;
+ul,
+li {
+  list-style-type: none;
 }
-body{
-    font-family: Lato, sans-serif;
-    font-size:16px;
-    line-height:26px;
-    min-width: 320px;
-    position:relative;
-    overflow-x:hidden;
-    background-color: #fff;
+body {
+  font-family: Lato, sans-serif;
+  font-size: 16px;
+  line-height: 26px;
+  min-width: 320px;
+  position: relative;
+  overflow-x: hidden;
+  background-color: #fff;
+  min-height: 100vh;
+  @include stretch-lengthwise;
 }
-input{
-    outline:none;
+input {
+  outline: none;
 }
-button{
-    cursor:pointer;
-    outline:none;
-    background: transparent;
-    border:none;
+button {
+  cursor: pointer;
+  outline: none;
+  background: transparent;
+  border: none;
 }
-.container{
-    max-width: 1250px;
-    padding: 0 10px;
-    margin:0 auto;
+.container {
+  max-width: 1250px;
+  padding: 0 10px;
+  margin: 0 auto;
+}
+.header {
+  padding: 30px 0;
+  background: radial-gradient(
+    50% 8766.71% at 50% 50.34%,
+    #c4ddd7 0%,
+    #507e74 96.64%
+  );
+  &__container {
+    @include stretch-wide;
+  }
+  &__logo {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-size: 25px;
+    line-height: 30px;
+    letter-spacing: 0.055em;
+  }
 }
 
 
-@media screen and (max-width: 1440px){
-    
+@media screen and (max-width: 1440px) {
 }
 
-@media screen and (max-width: 1280px){
-    
+@media screen and (max-width: 1280px) {
 }
 
-@media screen and (max-width: 1024px){
-    
+@media screen and (max-width: 1024px) {
 }
 
-@media screen and (max-width: 960px){
-    
+@media screen and (max-width: 960px) {
 }
 
-@media screen and (max-width: 768px){
-    
+@media screen and (max-width: 768px) {
 }
 
-@media screen and (max-width: 576px){
-    
+@media screen and (max-width: 576px) {
 }
 
-@media screen and (max-width: 420px){
-    
+@media screen and (max-width: 420px) {
 }
 
-@media screen and (max-width: 375px){
-    
+@media screen and (max-width: 375px) {
 }
 
-@media screen and (max-width: 320px){
-    
+@media screen and (max-width: 320px) {
 }
