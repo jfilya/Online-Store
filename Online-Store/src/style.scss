@@ -59,20 +59,7 @@ button {
 }
 
 
-.footer {
-    padding:10px 0;
-    border-top: 1px solid white;
-    border-top-left-radius: 50px;
-    border-top-right-radius: 50px;
-    background: black;
-  &__container {
-    @include stretch-wide;
-    p{
-        color:white;
-        font-size: 20px;
-    }
-  }
-}
+
 
 @media screen and (max-width: 1440px) {
 }
