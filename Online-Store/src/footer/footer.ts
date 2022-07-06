@@ -6,7 +6,7 @@ class Footer {
     this.page = document.querySelector("body") as HTMLBodyElement;
   }
   public innerFooter(): void {
-    this.page.innerHTML = `    <footer class="footer">
+    this.page.innerHTML += `    <footer class="footer">
     <div class="footer__container container">
       <a target="_blank" href="https://github.com/jfilya">
          <img src="assets/svg/gitHub.svg" alt="GitHub">
