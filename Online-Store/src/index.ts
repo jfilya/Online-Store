@@ -6,5 +6,6 @@ const header = new Header();
 header.innerHeader();
 const main = new Main();
 main.appendBody();
+main.appendMain();
 const footer = new Footer();
 footer.innerFooter();

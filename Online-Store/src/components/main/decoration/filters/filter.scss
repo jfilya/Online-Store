@@ -1,0 +1,98 @@
+@import "../../../../mixin.scss";
+h4 {
+  font-size: 35px;
+  margin-bottom: 20px;
+}
+.filter {
+  @include stretch-wide;
+
+}
+.filter-value {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    color: white;
+    backdrop-filter: blur(3px);
+    background-color: rgba(19, 20, 21, 0.3);
+  &__list {
+    display: flex;
+    align-items: center;
+  }
+  &__filter {
+    align-items: center;
+    display: flex;
+    margin: 20px 0;
+  }
+  &__phone {
+    img {
+      @include block-btn;
+    }
+  }
+  &__number-cameras {
+    @include block-btn;
+    @include center;
+  }
+  &__color {
+    @include block-btn;
+    &_white {
+      background-color: #fff;
+      &:before {
+        color: black;
+      }
+    }
+    &_yellow {
+      background-color: yellow;
+      &:before {
+        color: black;
+      }
+    }
+    &_red {
+      background-color: red;
+    }
+    &_green {
+      background-color: green;
+    }
+    &_black {
+      background-color: black;
+    }
+  }
+}
+.favorite-input {
+  display: none;
+}
+.favorite-label {
+  transition: 0.5s;
+  @include block-btn;
+  @include center;
+  position: relative;
+  &:before {
+    content: "🗸";
+    transition: 0.5s;
+    position: absolute;
+    opacity: 0;
+    font-size: 35px;
+    top: 10px;
+  }
+}
+.favorite-input:checked + .favorite-label {
+  transform: scale(1.1);
+  &:before {
+    opacity: 1;
+  }
+}
+.favorite-icon,
+.favorite-camera {
+  transition: 0.5s;
+}
+.favorite-input:checked + .favorite-icon {
+  transform: scale(1.1);
+  img {
+    background-color: cadetblue;
+    border: 3px solid #ffffff;
+  }
+}
+.favorite-input:checked + .favorite-camera {
+  transform: scale(1.1);
+  border: 3px solid #ffffff;
+  background-color: cadetblue;
+}
