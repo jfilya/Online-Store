@@ -52,7 +52,21 @@ class FilterValue {
         <input type="checkbox" class="favorite-input" id="checkbox">
         <label for="checkbox" class="favorite-label"></label>
       </div>
-    </div>`;
+    </div>
+    <div class="filter-value__filter filter-value__filter_slider">Количество:
+      <div class="slider-value"></div>
+      <div class="slider-value__range">
+        <div class="slider-value-start">1</div>
+        <div class="slider-value-end">20</div>
+      </div>
+    </div> 
+    <div class="filter-value__filter filter-value__filter_slider">Год выхода на рынок:
+      <div class="slider-year"></div>
+      <div class="slider-value__range">
+        <div class="slider-year-start">2017</div> 
+        <div class="slider-year-end">2022</div>
+      </div>  
+    </div> `;
   }
 }
 export default FilterValue;
