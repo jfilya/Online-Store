@@ -1,3 +1,6 @@
+import * as noUiSlider from "nouislider";
+import "nouislider/dist/nouislider.css";
+
 class FilterValue {
   public filter: HTMLDivElement;
   constructor() {
@@ -68,5 +71,51 @@ class FilterValue {
       </div>  
     </div> `;
   }
+  rangeSlider(
+    sliderName: noUiSlider.target,
+    x: number,
+    y: number,
+    inputs: HTMLDivElement[]
+  ): void {
+    if (sliderName) {
+      noUiSlider.create(sliderName, {
+        start: [x, y],
+        step: 1,
+        connect: true,
+        range: {
+          min: [x],
+          max: [y],
+        },
+      });
+      sliderName.noUiSlider.on(
+        "update",
+        (values, handle: number): string =>
+          (inputs[handle].innerText = `${Math.round(+values[handle])}`)
+      );
+    }
+  }
+}
+const filter = new FilterValue();
+
+function rangeBuild(): void {
+  filter.rangeSlider(
+    document.querySelector(".slider-value") as noUiSlider.target,
+    1,
+    10,
+    [
+      document.querySelector(".slider-value-start") as HTMLDivElement,
+      document.querySelector(".slider-value-end") as HTMLDivElement,
+    ]
+  );
+  filter.rangeSlider(
+    document.querySelector(".slider-year") as noUiSlider.target,
+    2017,
+    2022,
+    [
+      document.querySelector(".slider-year-start") as HTMLDivElement,
+      document.querySelector(".slider-year-end") as HTMLDivElement,
+    ]
+  );
 }
 export default FilterValue;
+export { rangeBuild, noUiSlider };
