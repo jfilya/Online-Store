@@ -9,6 +9,8 @@ header.innerHeader();
 const main = new Main();
 main.appendBody();
 main.appendMain();
+main.appendAsideValue();
+main.appendSectionProducts();
 const footer = new Footer();
 footer.innerFooter();
 range.rangeBuild();

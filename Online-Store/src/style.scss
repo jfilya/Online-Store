@@ -42,6 +42,7 @@ body {
   background-position: center center;
   min-height: 100vh;
   @include stretch-lengthwise;
+  color:#fff;
 }
 input {
   outline: none;
@@ -57,14 +58,21 @@ button {
   padding: 0 10px;
   margin: 0 auto;
 }
-
-
-
-
-@media screen and (max-width: 1440px) {
+main {
+  display: flex;
+  justify-content: space-between;
+  min-width: 1250px;
+  align-items: start;
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1440px) {
+  main {
+    min-width: 100%;
+  }
+}
+
+@media screen and (max-width: 1250px) {
+
 }
 
 @media screen and (max-width: 1024px) {

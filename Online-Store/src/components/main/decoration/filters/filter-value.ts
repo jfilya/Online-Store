@@ -46,12 +46,12 @@ class FilterValue {
       <div class="filter-value__list">
         <input type="checkbox" class="favorite-input" id="white">
         <label for="white" class="favorite-label filter-value__color_white"></label>
-        <input type="checkbox" class="favorite-input" id="yellow">
-        <label for="yellow" class="favorite-label filter-value__color_yellow"></label>
-        <input type="checkbox" class="favorite-input" id="red">
-        <label for="red" class="favorite-label filter-value__color_red"></label>
-        <input type="checkbox" class="favorite-input" id="green">
-        <label for="green" class="favorite-label filter-value__color_green"></label>
+        <input type="checkbox" class="favorite-input" id="purple">
+        <label for="purple" class="favorite-label filter-value__color_purple"></label>
+        <input type="checkbox" class="favorite-input" id="blue">
+        <label for="blue" class="favorite-label filter-value__color_blue"></label>
+        <input type="checkbox" class="favorite-input" id="gray">
+        <label for="gray" class="favorite-label filter-value__color_gray"></label>
         <input type="checkbox" class="favorite-input" id="black">
         <label for="black" class="favorite-label filter-value__color_black"></label>
       </div>
