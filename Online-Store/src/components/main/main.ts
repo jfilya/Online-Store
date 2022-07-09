@@ -16,6 +16,14 @@ class Main {
     this.main.append(this.asideValue);
     this.asideValue.className = "container filter";
     this.filterValue.innerFilter();
+    this.filterValue.manufacturer();
+    this.filterValue.numberCameras();
+    this.filterValue.colorSort();
+    this.filterValue.popular();
+    this.filterValue.range();
+    this.filterValue.search();
+    this.filterValue.sort();
+    this.filterValue.reset();
   }
 }
 

@@ -13,6 +13,7 @@ h4 {
   color: white;
   backdrop-filter: blur(3px);
   background-color: rgba(19, 20, 21, 0.3);
+  padding: 30px;
   &__list {
     display: flex;
     align-items: center;
@@ -20,9 +21,48 @@ h4 {
   &__filter {
     align-items: center;
     display: flex;
-    margin: 20px 0;
+    margin-bottom: 20px;
     &_slider {
       display: block;
+    }
+    &_search {
+      display: block;
+      outline: none;
+      margin-bottom: 20px;
+      label {
+        margin-bottom: 10px;
+      }
+      .search {
+        backdrop-filter: blur(3px);
+        background-color: rgba(19, 20, 21, 0.3);
+        border: 1px solid #278d9f;
+        border-radius: 15px;
+        background-color: transparent;
+        color: #fff;
+        height: 40px;
+        margin-right: 0;
+        width: 100%;
+        padding: 0 16px;
+        option {
+          background: black;
+        }
+      }
+    }
+    &_reset{
+      column-gap: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      button{
+        backdrop-filter: blur(3px);
+        background-color: rgba(19,20,21,.3);
+        border: 1px solid #278d9f;
+        border-radius: 20px;
+        color: #fff;
+        cursor: pointer;
+        height: 40px;
+        margin: 10px 0;
+        padding: 0 25px;
+      }
     }
   }
   &__phone {
@@ -99,8 +139,8 @@ h4 {
   background-color: cadetblue;
 }
 
-.slider-value{
-  &__range{
+.slider-value {
+  &__range {
     @include stretch-wide;
   }
 }
