@@ -104,3 +104,10 @@ h4 {
     @include stretch-wide;
   }
 }
+.slider-value-start,
+.slider-value-end,
+.slider-year-start,
+.slider-year-end {
+  @include block-btn;
+  @include center;
+}
