@@ -32,6 +32,8 @@ class FilterValue {
   numberCameras(): void {
     this.filter.innerHTML += `<div class="filter-value__filter">Количество камер:
     <div class="filter-value__list">
+      <input type="checkbox" class="favorite-input" id="camera4">
+      <label for="camera4" class="favorite-camera filter-value__number-cameras">4</label>
       <input type="checkbox" class="favorite-input" id="camera3">
       <label for="camera3" class="favorite-camera filter-value__number-cameras">3</label>
       <input type="checkbox" class="favorite-input" id="camera2">
