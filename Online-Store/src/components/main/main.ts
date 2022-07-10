@@ -38,6 +38,9 @@ class Main {
   appendSectionProducts(): void {
     this.products.innerProduct();
     this.products.createProductItem();
+    document.addEventListener("DOMContentLoaded", () => {
+      (document.querySelector(".search") as HTMLInputElement).focus();
+    });
   }
 }
 
