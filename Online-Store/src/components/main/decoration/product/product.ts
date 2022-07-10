@@ -72,6 +72,11 @@ class Products {
       product.append(btnInput);
       product.append(btn);
       btn.className = `product__item-btn`;
+
+      const basketItem: HTMLImageElement = document.createElement("img");
+      basketItem.src = "./assets/svg/basket.svg";
+      product.append(basketItem);
+      basketItem.className = "product__basket-add";
     }
   }
 }
