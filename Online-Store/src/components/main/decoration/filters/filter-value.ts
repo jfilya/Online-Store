@@ -1,6 +1,6 @@
 import * as noUiSlider from "nouislider";
 import "nouislider/dist/nouislider.css";
-
+import "./filter.scss";
 class FilterValue {
   public filter: HTMLDivElement;
   constructor() {

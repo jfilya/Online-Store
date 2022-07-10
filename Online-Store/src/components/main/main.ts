@@ -1,5 +1,4 @@
 import FilterValue from "./decoration/filters/filter-value";
-import "./decoration/filters/filter.scss";
 import Products from "./decoration/product/product";
 class Main {
   public main: HTMLElement;
