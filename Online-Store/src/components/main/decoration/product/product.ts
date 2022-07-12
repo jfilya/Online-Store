@@ -18,9 +18,12 @@ class Products {
       const product: HTMLDivElement = document.createElement("div");
       (document.querySelector(".product") as HTMLElement).append(product);
       product.className = `product__item ${prod.manufacturer}`;
+      product.setAttribute("name-sort", prod.name);
+      product.setAttribute("year-sort", `${prod.year}`);
 
       const img: HTMLImageElement = document.createElement("img");
       img.src = prod.img;
+      img.alt = prod.name;
       product.append(img);
       img.className = "product__item-image";
 
@@ -75,6 +78,7 @@ class Products {
 
       const basketItem: HTMLImageElement = document.createElement("img");
       basketItem.src = "./assets/svg/basket.svg";
+      basketItem.alt = "basket";
       product.append(basketItem);
       basketItem.className = "product__basket-add";
     }

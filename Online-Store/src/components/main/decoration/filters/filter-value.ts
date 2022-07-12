@@ -109,17 +109,17 @@ class FilterValue {
   search(): void {
     this.filter.innerHTML += `<div class="filter-value__filter_search">
       <label>Поиск:</label>
-      <input placeholder="Введите текст" type="search" class="search" value="">
+      <input placeholder="Введите текст" type="search" class="search" id="search-text" value="">
     </div>`;
   }
   sort(): void {
     this.filter.innerHTML += `<div class="filter-value__filter_search">
       <label>Сортировка:</label>
-      <select class="search">
-        <option selected value="От А до Я">От А до Я</option>
-        <option value="От Я до А">От Я до А</option>
-        <option value="От 2017 до 2022">От 2017 до 2022</option>
-        <option value="От 2022 до 2017">От 2022 до 2017</option>
+      <select class="search" id="search-ascending-descending">
+        <option id="search-ascending-text" selected>От А до Я</option>
+        <option id="search-descending-text">От Я до А</option>
+        <option id="search-ascending-year">От 2017 до 2022</option>
+        <option id="search-descending-year">От 2022 до 2017</option>
       </select>
     </div>`;
   }

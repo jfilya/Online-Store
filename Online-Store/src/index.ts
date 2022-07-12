@@ -3,7 +3,7 @@ import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
 import Main from "./components/main/main";
 import * as range from "./components/main/decoration/filters/filter-value";
-import { addCountOfBasket } from "./components/main/decoration/product/countOfBascet";
+import Sort from "./components/main/decoration/sort";
 import { products } from "./components/main/decoration/product/product-list";
 const header = new Header();
 header.innerHeader();
@@ -17,6 +17,8 @@ const footer = new Footer();
 footer.innerFooter();
 range.rangeBuild();
 
+const sort = new Sort();
+
 const btnsAdd = document.querySelectorAll(
   ".btnInput"
 ) as unknown as HTMLInputElement[];
@@ -24,4 +26,5 @@ const countOfBasket = document.querySelector(
   ".header__basket-amount"
 ) as HTMLDivElement;
 
-addCountOfBasket(btnsAdd, countOfBasket);
+sort.addCountOfBasket(btnsAdd, countOfBasket);
+sort.sortAscendingDescending();
