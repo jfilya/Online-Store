@@ -8,7 +8,7 @@ export interface IProducts {
   manufacturer: string;
   color: [string, string];
   numberOfCameras: number;
-  popular: boolean;
+  popular: string;
 }
 
 export const products: Array<IProducts> = [
@@ -22,7 +22,7 @@ export const products: Array<IProducts> = [
     manufacturer: "apple",
     color: ["белый", "white"],
     numberOfCameras: 2,
-    popular: true,
+    popular: "да",
   },
   {
     img: "./assets/phone/Apple iPhone SE.jpeg",
@@ -34,7 +34,7 @@ export const products: Array<IProducts> = [
     manufacturer: "apple",
     color: ["черный", "black"],
     numberOfCameras: 1,
-    popular: false,
+    popular: "нет",
   },
   {
     img: "./assets/phone/Apple iPhone 12.jpeg",
@@ -46,7 +46,7 @@ export const products: Array<IProducts> = [
     manufacturer: "apple",
     color: ["фиолетвый", "purple"],
     numberOfCameras: 2,
-    popular: false,
+    popular: "нет",
   },
   {
     img: "./assets/phone/Apple iPhone 11.jpeg",
@@ -58,7 +58,7 @@ export const products: Array<IProducts> = [
     manufacturer: "apple",
     color: ["фиолетовый", "purple"],
     numberOfCameras: 2,
-    popular: false,
+    popular: "нет",
   },
   {
     img: "./assets/phone/Apple iPhone 11 white.jpeg",
@@ -70,7 +70,7 @@ export const products: Array<IProducts> = [
     manufacturer: "apple",
     color: ["белый", "white"],
     numberOfCameras: 2,
-    popular: false,
+    popular: "нет",
   },
   {
     img: "./assets/phone/Apple iPhone 12 blue.jpeg",
@@ -82,7 +82,7 @@ export const products: Array<IProducts> = [
     manufacturer: "apple",
     color: ["голубой", "blue"],
     numberOfCameras: 2,
-    popular: true,
+    popular: "да",
   },
   {
     img: "./assets/phone/Samsung Galaxy A23.jpeg",
@@ -94,7 +94,7 @@ export const products: Array<IProducts> = [
     manufacturer: "samsung",
     color: ["белый", "white"],
     numberOfCameras: 3,
-    popular: false,
+    popular: "нет",
   },
   {
     img: "./assets/phone/Samsung Galaxy A33.jpeg",
@@ -106,7 +106,7 @@ export const products: Array<IProducts> = [
     manufacturer: "samsung",
     color: ["черный", "black"],
     numberOfCameras: 3,
-    popular: false,
+    popular: "нет",
   },
   {
     img: "./assets/phone/Samsung Galaxy A73.jpeg",
@@ -118,7 +118,7 @@ export const products: Array<IProducts> = [
     manufacturer: "samsung",
     color: ["серый", "gray"],
     numberOfCameras: 3,
-    popular: false,
+    popular: "нет",
   },
   {
     img: "./assets/phone/Samsung Galaxy A12.jpeg",
@@ -130,7 +130,7 @@ export const products: Array<IProducts> = [
     manufacturer: "samsung",
     color: ["голубой", "blue"],
     numberOfCameras: 4,
-    popular: false,
+    popular: "нет",
   },
   {
     img: "./assets/phone/Samsung Galaxy S20.jpeg",
@@ -142,7 +142,7 @@ export const products: Array<IProducts> = [
     manufacturer: "samsung",
     color: ["фиолетовый", "purple"],
     numberOfCameras: 3,
-    popular: true,
+    popular: "да",
   },
   {
     img: "./assets/phone/Samsung Galaxy A52.jpeg",
@@ -154,7 +154,7 @@ export const products: Array<IProducts> = [
     manufacturer: "samsung",
     color: ["фиолетовый", "purple"],
     numberOfCameras: 3,
-    popular: false,
+    popular: "нет",
   },
   {
     img: "./assets/phone/Xiaomi Redmi 9A.jpeg",
@@ -166,7 +166,7 @@ export const products: Array<IProducts> = [
     manufacturer: "xiaomi",
     color: ["голубой", "blue"],
     numberOfCameras: 1,
-    popular: true,
+    popular: "да",
   },
   {
     img: "./assets/phone/Xiaomi Redmi 10.jpeg",
@@ -178,7 +178,7 @@ export const products: Array<IProducts> = [
     manufacturer: "xiaomi",
     color: ["серый", "gray"],
     numberOfCameras: 4,
-    popular: true,
+    popular: "да",
   },
   {
     img: "./assets/phone/Xiaomi 12 blue.jpeg",
@@ -190,7 +190,7 @@ export const products: Array<IProducts> = [
     manufacturer: "xiaomi",
     color: ["голубой", "blue"],
     numberOfCameras: 1,
-    popular: false,
+    popular: "нет",
   },
   {
     img: "./assets/phone/Xiaomi 12 purple.jpeg",
@@ -202,7 +202,7 @@ export const products: Array<IProducts> = [
     manufacturer: "xiaomi",
     color: ["фиолетовый", "purple"],
     numberOfCameras: 1,
-    popular: false,
+    popular: "нет",
   },
   {
     img: "./assets/phone/Xiaomi Redmi Note 11 Pro.jpeg",
@@ -214,7 +214,7 @@ export const products: Array<IProducts> = [
     manufacturer: "xiaomi",
     color: ["черный", "black"],
     numberOfCameras: 1,
-    popular: true,
+    popular: "да",
   },
   {
     img: "./assets/phone/Xiaomi Redmi Note 11 Pro white.jpeg",
@@ -226,6 +226,6 @@ export const products: Array<IProducts> = [
     manufacturer: "xiaomi",
     color: ["белый", "white"],
     numberOfCameras: 1,
-    popular: true,
+    popular: "да",
   },
 ];

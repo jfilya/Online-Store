@@ -18,72 +18,22 @@ class Products {
   createProductItem(p: IProducts[]): void {
     (document.querySelector(".product") as HTMLElement).innerHTML = ``;
     for (const prod of p) {
-      const product: HTMLDivElement = document.createElement("div");
-      (document.querySelector(".product") as HTMLElement).append(product);
-      product.className = `product__item ${prod.manufacturer}`;
-      product.setAttribute("name-sort", prod.name);
-      product.setAttribute("year-sort", `${prod.year}`);
-
-      const img: HTMLImageElement = document.createElement("img");
-      img.src = prod.img;
-      img.alt = prod.name;
-      product.append(img);
-      img.className = "product__item-image";
-
-      const h: HTMLHeadingElement = document.createElement("h5");
-      h.innerHTML = prod.name;
-      product.append(h);
-      h.className = "product__item-title";
-
-      const price: HTMLParagraphElement = document.createElement("p");
-      price.innerHTML = `Цена: ${prod.price} руб`;
-      product.append(price);
-
-      const amount: HTMLParagraphElement = document.createElement("p");
-      amount.innerHTML = `Количество: ${prod.amount}`;
-      product.append(amount);
-
-      const year: HTMLParagraphElement = document.createElement("p");
-      year.innerHTML = `Год: ${prod.year}`;
-      product.append(year);
-
-      const manufacturer: HTMLParagraphElement = document.createElement("p");
-      manufacturer.innerHTML = `Производитель: ${prod.manufacturer}`;
-      product.append(manufacturer);
-
-      const color: HTMLParagraphElement = document.createElement("p");
-      color.innerHTML = `Цвет: ${prod.color[0]}`;
-      color.className = `${prod.color[1]}`;
-      product.append(color);
-
-      const numberOfCameras: HTMLParagraphElement = document.createElement("p");
-      numberOfCameras.innerHTML = `Количество камер: ${prod.numberOfCameras}`;
-      product.append(numberOfCameras);
-
-      const popular: HTMLParagraphElement = document.createElement("p");
-      if (prod.popular) {
-        popular.innerHTML = `Популярный: да`;
-      }
-      if (!prod.popular) {
-        popular.innerHTML = `Популярный: нет`;
-      }
-      product.append(popular);
-
-      const btn: HTMLLabelElement = document.createElement("label");
-      const btnInput: HTMLInputElement = document.createElement("input");
-      btn.setAttribute("for", `btn-${prod.id}`);
-      btnInput.id = `btn-${prod.id}`;
-      btnInput.type = "checkbox";
-      btnInput.className = "btnInput";
-      product.append(btnInput);
-      product.append(btn);
-      btn.className = `product__item-btn`;
-
-      const basketItem: HTMLImageElement = document.createElement("img");
-      basketItem.src = "./assets/svg/basket.svg";
-      basketItem.alt = "basket";
-      product.append(basketItem);
-      basketItem.className = "product__basket-add";
+      (
+        document.querySelector(".product") as HTMLElement
+      ).innerHTML += `<div class="product__item ${prod.manufacturer}" name-sort="${prod.name}" year-sort="${prod.year}">
+        <img src="${prod.img}" alt="${prod.name}" class="product__item-image">
+        <h5 class="product__item-title">${prod.name}</h5>
+        <p>Цена: ${prod.price} руб</p>
+        <p>Количество: ${prod.amount}</p>
+        <p>Год: ${prod.year}</p>
+        <p>Производитель: ${prod.manufacturer}</p>
+        <p class="${prod.color[1]}">Цвет: ${prod.color[0]}</p>
+        <p>Количество камер: ${prod.numberOfCameras}</p>
+        <p>Популярный: ${prod.popular}</p>
+        <input id="btn-${prod.id}" type="checkbox" class="btnInput">
+        <label for="btn-${prod.id}" class="product__item-btn"></label>
+        <img src="./assets/svg/basket.svg" alt="basket" class="product__basket-add">
+      </div>`;
     }
   }
 }
