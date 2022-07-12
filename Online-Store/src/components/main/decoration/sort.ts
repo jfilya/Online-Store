@@ -154,6 +154,9 @@ class Sort {
         } else {
           elasticItems.forEach((elem) => {
             (elem.parentNode as HTMLDivElement).style.display = "block";
+            (
+              document.querySelector(".no-found") as HTMLParagraphElement
+            ).style.display = "none";
           });
         }
       };
