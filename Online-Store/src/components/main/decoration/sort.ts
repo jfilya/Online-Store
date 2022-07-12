@@ -121,6 +121,33 @@ class Sort {
       );
     }
   }
+  searchBox(): void {
+    (document.getElementById("search-text") as HTMLInputElement).oninput =
+      (): void => {
+        const val = (
+          document.getElementById("search-text") as HTMLInputElement
+        ).value
+          .trim()
+          .toLowerCase();
+        const elasticItems = document.querySelectorAll(".product__item-title");
+        if (val != "") {
+          elasticItems.forEach((elem) => {
+            if (
+              (elem as HTMLHeadElement).innerText.toLowerCase().search(val) ==
+              -1
+            ) {
+              (elem.parentNode as HTMLDivElement).style.display = "none";
+            } else {
+              (elem.parentNode as HTMLDivElement).style.display = "block";
+            }
+          });
+        } else {
+          elasticItems.forEach((elem) => {
+            (elem.parentNode as HTMLDivElement).style.display = "block";
+          });
+        }
+      };
+  }
 }
 
 export default Sort;

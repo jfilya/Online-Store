@@ -28,3 +28,4 @@ const countOfBasket = document.querySelector(
 
 sort.addCountOfBasket(btnsAdd, countOfBasket);
 sort.sortAscendingDescending();
+sort.searchBox();
