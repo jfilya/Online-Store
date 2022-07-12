@@ -1,6 +1,5 @@
 import FilterValue from "./decoration/filters/filter-value";
 import Products from "./decoration/product/product";
-import { IProducts } from "./decoration/product/product-list";
 
 class Main {
   public main: HTMLElement;
@@ -38,12 +37,10 @@ class Main {
   }
   appendSectionProducts(): void {
     this.products.innerProduct();
+    // this.products.buildProductitem();
     document.addEventListener("DOMContentLoaded", () => {
       (document.querySelector(".search") as HTMLInputElement).focus();
     });
-  }
-  fullnessOfGoods(p: IProducts[]): void {
-    this.products.createProductItem(p);
   }
 }
 

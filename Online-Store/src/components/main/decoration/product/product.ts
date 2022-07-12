@@ -1,8 +1,12 @@
-import { IProducts } from "./product-list";
+import * as noUiSlider from "nouislider";
+import "nouislider/dist/nouislider.css";
+import { IProducts, products } from "./product-list";
 import "./product.scss";
 class Products {
   public productItem: HTMLDivElement;
+  public products: IProducts[];
   constructor() {
+    this.products = products;
     this.productItem = document.createElement("div");
   }
   innerProduct(): void {
@@ -15,7 +19,7 @@ class Products {
     (document.querySelector("section") as HTMLElement).append(this.productItem);
     this.productItem.className = "product";
   }
-  createProductItem(p: IProducts[]): void {
+  buildProductitem(p: IProducts[]): void {
     (document.querySelector(".product") as HTMLElement).innerHTML = ``;
     for (const prod of p) {
       (
@@ -29,13 +33,82 @@ class Products {
         <p>Производитель: ${prod.manufacturer}</p>
         <p class="${prod.color[1]}">Цвет: ${prod.color[0]}</p>
         <p>Количество камер: ${prod.numberOfCameras}</p>
-        <p>Популярный: ${prod.popular}</p>
+        <p>Популярный: ${prod.popular[0]}</p>
         <input id="btn-${prod.id}" type="checkbox" class="btnInput">
         <label for="btn-${prod.id}" class="product__item-btn"></label>
         <img src="./assets/svg/basket.svg" alt="basket" class="product__basket-add">
       </div>`;
     }
   }
+  rangeSlider(
+    sliderName: noUiSlider.target,
+    x: number,
+    y: number,
+    inputs: HTMLDivElement[]
+  ): void {
+    if (sliderName) {
+      noUiSlider.create(sliderName, {
+        start: [x, y],
+        step: 1,
+        connect: true,
+        range: {
+          min: [x],
+          max: [y],
+        },
+      });
+      sliderName.noUiSlider.on(
+        "update",
+        (values, handle: number): string =>
+          (inputs[handle].innerText = `${Math.round(+values[handle])}`)
+      );
+      const sliderValueStart = document.querySelector(
+        ".slider-value-start"
+      ) as HTMLDivElement;
+      const sliderValueEnd = document.querySelector(
+        ".slider-value-end"
+      ) as HTMLDivElement;
+      const sliderYearStart = document.querySelector(
+        ".slider-year-start"
+      ) as HTMLDivElement;
+      const sliderYearEnd = document.querySelector(
+        ".slider-year-end"
+      ) as HTMLDivElement;
+      sliderName.noUiSlider.on("update", () => {
+        this.buildProductitem(
+          this.products.filter(
+            (p: IProducts) =>
+              p.amount >= +sliderValueStart.innerText &&
+              p.amount <= +sliderValueEnd.innerText &&
+              p.year >= +sliderYearStart.innerText &&
+              p.year <= +sliderYearEnd.innerText
+          )
+        );
+      });
+    }
+  }
 }
 
 export default Products;
+
+function rangeBuild(): void {
+  new Products().rangeSlider(
+    document.querySelector(".slider-value") as noUiSlider.target,
+    1,
+    10,
+    [
+      document.querySelector(".slider-value-start") as HTMLDivElement,
+      document.querySelector(".slider-value-end") as HTMLDivElement,
+    ]
+  );
+  new Products().rangeSlider(
+    document.querySelector(".slider-year") as noUiSlider.target,
+    2017,
+    2022,
+    [
+      document.querySelector(".slider-year-start") as HTMLDivElement,
+      document.querySelector(".slider-year-end") as HTMLDivElement,
+    ]
+  );
+}
+
+export { rangeBuild, noUiSlider };

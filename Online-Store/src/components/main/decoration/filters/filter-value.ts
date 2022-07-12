@@ -1,5 +1,3 @@
-import * as noUiSlider from "nouislider";
-import "nouislider/dist/nouislider.css";
 import "./filter.scss";
 class FilterValue {
   public filter: HTMLDivElement;
@@ -84,33 +82,10 @@ class FilterValue {
       </div>  
     </div>`;
   }
-  rangeSlider(
-    sliderName: noUiSlider.target,
-    x: number,
-    y: number,
-    inputs: HTMLDivElement[]
-  ): void {
-    if (sliderName) {
-      noUiSlider.create(sliderName, {
-        start: [x, y],
-        step: 1,
-        connect: true,
-        range: {
-          min: [x],
-          max: [y],
-        },
-      });
-      sliderName.noUiSlider.on(
-        "update",
-        (values, handle: number): string =>
-          (inputs[handle].innerText = `${Math.round(+values[handle])}`)
-      );
-    }
-  }
   search(): void {
     this.filter.innerHTML += `<div class="filter-value__filter_search">
       <label>Поиск:</label>
-      <input placeholder="Введите текст" type="search" class="search" id="search-text" value="">
+      <input placeholder="Введите наименование товара" type="search" class="search" id="search-text" value="">
     </div>`;
   }
   sort(): void {
@@ -131,27 +106,5 @@ class FilterValue {
     </div>`;
   }
 }
-const filter = new FilterValue();
 
-function rangeBuild(): void {
-  filter.rangeSlider(
-    document.querySelector(".slider-value") as noUiSlider.target,
-    1,
-    10,
-    [
-      document.querySelector(".slider-value-start") as HTMLDivElement,
-      document.querySelector(".slider-value-end") as HTMLDivElement,
-    ]
-  );
-  filter.rangeSlider(
-    document.querySelector(".slider-year") as noUiSlider.target,
-    2017,
-    2022,
-    [
-      document.querySelector(".slider-year-start") as HTMLDivElement,
-      document.querySelector(".slider-year-end") as HTMLDivElement,
-    ]
-  );
-}
 export default FilterValue;
-export { rangeBuild, noUiSlider };
