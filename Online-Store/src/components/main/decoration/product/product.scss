@@ -95,3 +95,10 @@ h5 {
 .btnInput:checked + .product__item-btn + .product__basket-add {
   opacity: 1;
 }
+.no-found{
+  display: none;
+  font-size: 30px;
+  font-style: italic;
+  padding-top: 20px;
+  text-align: center;
+}

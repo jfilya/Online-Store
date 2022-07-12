@@ -9,6 +9,9 @@ class Products {
     (
       document.querySelector("section") as HTMLElement
     ).innerHTML += `<h4>Товары</h4>`;
+    (
+      document.querySelector("section") as HTMLElement
+    ).innerHTML += `<p class="no-found">Извините, совпадений не обнаружено</p>`;
     (document.querySelector("section") as HTMLElement).append(this.productItem);
     this.productItem.className = "product";
   }

@@ -130,6 +130,7 @@ class Sort {
           .trim()
           .toLowerCase();
         const elasticItems = document.querySelectorAll(".product__item-title");
+        let flag = 0;
         if (val != "") {
           elasticItems.forEach((elem) => {
             if (
@@ -137,8 +138,17 @@ class Sort {
               -1
             ) {
               (elem.parentNode as HTMLDivElement).style.display = "none";
+              flag++;
+              if (flag === elasticItems.length) {
+                (
+                  document.querySelector(".no-found") as HTMLParagraphElement
+                ).style.display = "block";
+              }
             } else {
               (elem.parentNode as HTMLDivElement).style.display = "block";
+              (
+                document.querySelector(".no-found") as HTMLParagraphElement
+              ).style.display = "none";
             }
           });
         } else {
