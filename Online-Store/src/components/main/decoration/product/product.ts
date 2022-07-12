@@ -1,4 +1,4 @@
-import products from "./product-list";
+import { IProducts } from "./product-list";
 import "./product.scss";
 class Products {
   public productItem: HTMLDivElement;
@@ -12,11 +12,11 @@ class Products {
     (document.querySelector("section") as HTMLElement).append(this.productItem);
     this.productItem.className = "product";
   }
-  createProductItem(): void {
-    this.productItem.innerHTML += ``;
-    for (const prod of products) {
+  createProductItem(p: IProducts[]): void {
+    (document.querySelector(".product") as HTMLElement).innerHTML = ``;
+    for (const prod of p) {
       const product: HTMLDivElement = document.createElement("div");
-      this.productItem.append(product);
+      (document.querySelector(".product") as HTMLElement).append(product);
       product.className = `product__item ${prod.manufacturer}`;
 
       const img: HTMLImageElement = document.createElement("img");

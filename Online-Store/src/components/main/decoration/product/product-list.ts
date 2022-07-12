@@ -1,4 +1,4 @@
-interface IProducts {
+export interface IProducts {
   img: string;
   id: string;
   name: string;
@@ -11,7 +11,7 @@ interface IProducts {
   popular: boolean;
 }
 
-const products: Array<IProducts> = [
+export const products: Array<IProducts> = [
   {
     img: "./assets/phone/Apple iPhone 13 mini.jpeg",
     name: "Apple iPhone 13 mini",
@@ -229,4 +229,3 @@ const products: Array<IProducts> = [
     popular: true,
   },
 ];
-export default products;
