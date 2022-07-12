@@ -7,9 +7,10 @@ class FilterValue {
     this.filter = document.createElement("div");
   }
   innerFilter(): void {
+    (document.querySelector("aside") as HTMLElement).innerHTML = ``;
     (document.querySelector("aside") as HTMLElement).append(this.filter);
     this.filter.className = "filter-value";
-    this.filter.innerHTML += `<h4>Фильтры</h4>`;
+    this.filter.innerHTML = `<h4>Фильтры</h4>`;
   }
   manufacturer(): void {
     this.filter.innerHTML += `<div class="filter-value__filter">Производитель:
@@ -125,7 +126,7 @@ class FilterValue {
   }
   reset(): void {
     this.filter.innerHTML += `<div class="filter-value__filter_reset">
-      <button>Сброс фильтров</button>
+      <button id="reset-filters">Сброс фильтров</button>
       <button>Сброс настроек</button>
     </div>`;
   }
