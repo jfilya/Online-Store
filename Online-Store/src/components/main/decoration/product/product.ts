@@ -24,7 +24,7 @@ class Products {
     for (const prod of p) {
       (
         document.querySelector(".product") as HTMLElement
-      ).innerHTML += `<div class="product__item ${prod.manufacturer}" name-sort="${prod.name}" year-sort="${prod.year}">
+      ).innerHTML += `<div id="${prod.id}" class="product__item ${prod.manufacturer}" name-sort="${prod.name}" year-sort="${prod.year}">
         <img src="${prod.img}" alt="${prod.name}" class="product__item-image">
         <h5 class="product__item-title">${prod.name}</h5>
         <p>Цена: ${prod.price} руб</p>
@@ -35,7 +35,6 @@ class Products {
         <p>Количество камер: ${prod.numberOfCameras}</p>
         <p>Популярный: ${prod.popular[0]}</p>
         <div class="product__item-btn">${prod.btn}</div>
-        <img src="./assets/svg/basket.svg" alt="basket" class="product__basket-add">
       </div>`;
       this.addCountOfBasket();
       this.searchOninput();
@@ -49,18 +48,26 @@ class Products {
     (
       document.querySelectorAll(
         ".product__item-btn"
-      ) as unknown as HTMLInputElement[]
-    ).forEach((element, index) => {
+      ) as unknown as HTMLDivElement[]
+    ).forEach((element) => {
       element.addEventListener("click", () => {
-        if (products[index].btn == "Добавить в корзину") {
-          products[index].btn = "Удалить";
+        if (element.innerHTML == "Добавить в корзину") {
+          this.products.forEach((p) => {
+            if ((element.parentNode as HTMLDivElement).id === p.id) {
+              p.btn = "Удалить";
+            }
+          });
           element.innerHTML = "Удалить";
           count += 1;
           (
             document.querySelector(".header__basket-amount") as HTMLDivElement
           ).innerHTML = `${count}`;
-        } else if (products[index].btn == "Удалить") {
-          products[index].btn = "Добавить в корзину";
+        } else if (element.innerHTML == "Удалить") {
+          this.products.forEach((p) => {
+            if ((element.parentNode as HTMLDivElement).id === p.id) {
+              p.btn = "Добавить в корзину";
+            }
+          });
           element.innerHTML = "Добавить в корзину";
           count -= 1;
           (

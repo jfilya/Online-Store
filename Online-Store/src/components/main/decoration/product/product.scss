@@ -19,7 +19,7 @@ h5 {
     overflow: hidden;
     position: relative;
     &:hover {
-      .product____item-image {
+      .product__item-image {
         transform: scale(1.1);
       }
     }
@@ -52,17 +52,6 @@ h5 {
     &:hover {
       box-shadow: 0px 0px 14px #278d9f;
     }
-  }
-  &__basket-add{
-    position: absolute;
-    background: black;
-    top: 10px;
-    right: 10px;
-    width: 40px;
-    padding: 5px;
-    border-radius: 15px;
-    opacity:0;
-    transition: 0.3s;
   }
 }
 
