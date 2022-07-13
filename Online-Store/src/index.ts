@@ -14,3 +14,4 @@ main.appendSectionProducts();
 const footer = new Footer();
 footer.innerFooter();
 range.rangeBuild();
+main.activeSectionProducts();

@@ -48,7 +48,7 @@ class FilterValue {
   }
   popular(): void {
     this.filter.innerHTML += `<div class="filter-value__filter">Только популярные:
-        <div id="checkbox" for="checkbox" class="favorite-item favorite-label"></div>
+        <div id="checkbox" class="favorite-item favorite-label"></div>
     </div>`;
   }
   range(): void {

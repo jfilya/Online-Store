@@ -24,7 +24,7 @@ class Products {
     for (const prod of p) {
       (
         document.querySelector(".product") as HTMLElement
-      ).innerHTML += `<div id="${prod.id}" class="product__item ${prod.manufacturer}" name-sort="${prod.name}" year-sort="${prod.year}">
+      ).innerHTML += `<div id="${prod.id}" class="product__item ${prod.manufacturer}" name-sort="${prod.name}" year-sort="${prod.year}" popular="${prod.popular[0]}">
         <img src="${prod.img}" alt="${prod.name}" class="product__item-image">
         <h5 class="product__item-title">${prod.name}</h5>
         <p>Цена: ${prod.price} руб</p>
@@ -36,10 +36,8 @@ class Products {
         <p>Популярный: ${prod.popular[0]}</p>
         <div class="product__item-btn">${prod.btn}</div>
       </div>`;
-      this.addCountOfBasket();
-      this.searchOninput();
-      this.sortAscendingDescendingOnchange();
     }
+    this.addCountOfBasket();
   }
   addCountOfBasket(): void {
     let count = +(
@@ -122,6 +120,7 @@ class Products {
         );
         this.searchBoxValue();
         this.sortAscendingDescending();
+        this.onlyPopular();
       });
     }
   }
@@ -144,7 +143,7 @@ class Products {
         if (
           (elem as HTMLHeadElement).innerText.toLowerCase().search(val) == -1
         ) {
-          (elem.parentNode as HTMLDivElement).style.display = "none";
+          (elem.parentNode as HTMLDivElement).classList.add("not-search-text");
           flag++;
           if (flag === elasticItems.length) {
             (
@@ -152,7 +151,9 @@ class Products {
             ).style.display = "block";
           }
         } else {
-          (elem.parentNode as HTMLDivElement).style.display = "block";
+          (elem.parentNode as HTMLDivElement).classList.remove(
+            "not-search-text"
+          );
           (
             document.querySelector(".no-found") as HTMLParagraphElement
           ).style.display = "none";
@@ -160,7 +161,7 @@ class Products {
       });
     } else {
       elasticItems.forEach((elem) => {
-        (elem.parentNode as HTMLDivElement).style.display = "block";
+        (elem.parentNode as HTMLDivElement).classList.remove("not-search-text");
         (
           document.querySelector(".no-found") as HTMLParagraphElement
         ).style.display = "none";
@@ -268,6 +269,35 @@ class Products {
         refElem.nextSibling
       );
     }
+  }
+  onlyPopular(): void {
+    const checkboxPupular = document.getElementById(
+      "checkbox"
+    ) as HTMLDivElement;
+    const productsItemPopular = document.querySelectorAll(
+      ".product__item"
+    ) as unknown as HTMLDivElement[];
+
+    if (checkboxPupular.classList.contains("active-checkbox")) {
+      productsItemPopular.forEach((popular) => {
+        if (popular.getAttribute("popular") === "нет") {
+          popular.classList.add("not-popular");
+        }
+      });
+    } else if (!checkboxPupular.classList.contains("active-checkbox")) {
+      productsItemPopular.forEach((popular) => {
+        popular.classList.remove("not-popular");
+      });
+    }
+  }
+  onlyPopularClick(): void {
+    const checkboxPupular = document.getElementById(
+      "checkbox"
+    ) as HTMLDivElement;
+    checkboxPupular.addEventListener("click", () => {
+      checkboxPupular.classList.toggle("active-checkbox");
+      this.onlyPopular();
+    });
   }
 }
 

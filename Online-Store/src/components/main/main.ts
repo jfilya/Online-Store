@@ -34,12 +34,17 @@ class Main {
     this.filterValue.search();
     this.filterValue.sort();
     this.filterValue.reset();
-  }
-  appendSectionProducts(): void {
-    this.products.innerProduct();
     document.addEventListener("DOMContentLoaded", () => {
       (document.querySelector(".search") as HTMLInputElement).focus();
     });
+  }
+  appendSectionProducts(): void {
+    this.products.innerProduct();
+  }
+  activeSectionProducts(): void {
+    this.products.searchOninput();
+    this.products.sortAscendingDescendingOnchange();
+    this.products.onlyPopularClick();
   }
 }
 
