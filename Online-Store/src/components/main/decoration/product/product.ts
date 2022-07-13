@@ -38,7 +38,28 @@ class Products {
         <label for="btn-${prod.id}" class="product__item-btn"></label>
         <img src="./assets/svg/basket.svg" alt="basket" class="product__basket-add">
       </div>`;
+      this.addCountOfBasket();
     }
+  }
+  addCountOfBasket(): void {
+    let count = 0;
+    (
+      document.querySelectorAll(".btnInput") as unknown as HTMLInputElement[]
+    ).forEach((element) => {
+      element.onchange = function () {
+        if (element.checked) {
+          count += 1;
+          (
+            document.querySelector(".header__basket-amount") as HTMLDivElement
+          ).innerHTML = `${count}`;
+        } else if (!element.checked) {
+          count -= 1;
+          (
+            document.querySelector(".header__basket-amount") as HTMLDivElement
+          ).innerHTML = `${count}`;
+        }
+      };
+    });
   }
   rangeSlider(
     sliderName: noUiSlider.target,

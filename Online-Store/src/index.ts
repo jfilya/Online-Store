@@ -4,6 +4,7 @@ import Footer from "./components/footer/footer";
 import Main from "./components/main/main";
 import * as range from "./components/main/decoration/product/product";
 import Sort from "./components/main/decoration/sort";
+import { products } from "./components/main/decoration/product/product-list";
 
 const header = new Header();
 header.innerHeader();
@@ -15,16 +16,7 @@ main.appendSectionProducts();
 const footer = new Footer();
 footer.innerFooter();
 range.rangeBuild();
-
 const sort = new Sort();
-
-const btnsAdd = document.querySelectorAll(
-  ".btnInput"
-) as unknown as HTMLInputElement[];
-const countOfBasket = document.querySelector(
-  ".header__basket-amount"
-) as HTMLDivElement;
-
-sort.addCountOfBasket(btnsAdd, countOfBasket);
 sort.sortAscendingDescending();
 sort.searchBox();
+console.log(products);

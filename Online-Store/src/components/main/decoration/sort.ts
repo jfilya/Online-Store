@@ -1,20 +1,4 @@
-type element = (x: HTMLInputElement[], y: HTMLDivElement) => void;
-
 class Sort {
-  addCountOfBasket: element = (x, y) => {
-    let count = 0;
-    x.forEach((element) => {
-      element.onchange = function () {
-        if (element.checked) {
-          count += 1;
-          y.innerHTML = `${count}`;
-        } else if (!element.checked) {
-          count -= 1;
-          y.innerHTML = `${count}`;
-        }
-      };
-    });
-  };
   sortAscendingDescending(): void {
     const elementProducts: HTMLDivElement = document.querySelector(
       ".product"
