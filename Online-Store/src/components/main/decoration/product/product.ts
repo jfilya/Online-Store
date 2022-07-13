@@ -5,9 +5,11 @@ import "./product.scss";
 class Products {
   public productItem: HTMLDivElement;
   public products: IProducts[];
+  public productsNotPopular: IProducts[];
   constructor() {
     this.products = products;
     this.productItem = document.createElement("div");
+    this.productsNotPopular = [];
   }
   innerProduct(): void {
     (
@@ -108,6 +110,7 @@ class Products {
       const sliderYearEnd = document.querySelector(
         ".slider-year-end"
       ) as HTMLDivElement;
+      this.products = this.filterBtnAll();
       sliderName.noUiSlider.on("update", () => {
         this.buildProductitem(
           this.products.filter(
@@ -118,10 +121,10 @@ class Products {
               p.year <= +sliderYearEnd.innerText
           )
         );
+        this.filterBtnAll();
         this.searchBoxValue();
-        this.sortAscendingDescending();
-        this.onlyPopular();
         this.outputMessageNotFound();
+        this.sortAscendingDescending();
       });
     }
   }
@@ -271,33 +274,28 @@ class Products {
       );
     }
   }
-  onlyPopular(): void {
+  filterBtnAll(): IProducts[] {
     const checkboxPupular = document.getElementById(
       "checkbox"
     ) as HTMLDivElement;
-    const productsItemPopular = document.querySelectorAll(
-      ".product__item"
-    ) as unknown as HTMLDivElement[];
-
     if (checkboxPupular.classList.contains("active-checkbox")) {
-      productsItemPopular.forEach((popular) => {
-        if (popular.getAttribute("popular") === "нет") {
-          popular.classList.add("not-popular");
-        }
-      });
+      this.productsNotPopular = this.products.filter((p) => !p.popular[1]);
+      this.products = this.products.filter((p) => p.popular[1]);
     } else if (!checkboxPupular.classList.contains("active-checkbox")) {
-      productsItemPopular.forEach((popular) => {
-        popular.classList.remove("not-popular");
-      });
+      this.products.push(...this.productsNotPopular);
+      this.productsNotPopular.splice(0, this.productsNotPopular.length);
     }
+    return this.products;
   }
-  onlyPopularClick(): void {
+  filterBtnAllClick(): void {
     const checkboxPupular = document.getElementById(
       "checkbox"
     ) as HTMLDivElement;
     checkboxPupular.addEventListener("click", () => {
       checkboxPupular.classList.toggle("active-checkbox");
-      this.onlyPopular();
+      this.filterBtnAll();
+      this.buildProductitem(this.products);
+      this.sortAscendingDescending();
     });
   }
   outputMessageNotFound(): void {

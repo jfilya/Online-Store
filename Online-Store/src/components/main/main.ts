@@ -44,7 +44,7 @@ class Main {
   activeSectionProducts(): void {
     this.products.searchOninput();
     this.products.sortAscendingDescendingOnchange();
-    this.products.onlyPopularClick();
+    this.products.filterBtnAllClick();
   }
 }
 
