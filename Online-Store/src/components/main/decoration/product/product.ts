@@ -34,31 +34,38 @@ class Products {
         <p class="${prod.color[1]}">Цвет: ${prod.color[0]}</p>
         <p>Количество камер: ${prod.numberOfCameras}</p>
         <p>Популярный: ${prod.popular[0]}</p>
-        <input id="btn-${prod.id}" type="checkbox" class="btnInput">
-        <label for="btn-${prod.id}" class="product__item-btn"></label>
+        <div class="product__item-btn">${prod.btn}</div>
         <img src="./assets/svg/basket.svg" alt="basket" class="product__basket-add">
       </div>`;
       this.addCountOfBasket();
     }
   }
   addCountOfBasket(): void {
-    let count = 0;
+    let count = +(
+      document.querySelector(".header__basket-amount") as HTMLDivElement
+    ).innerHTML;
     (
-      document.querySelectorAll(".btnInput") as unknown as HTMLInputElement[]
-    ).forEach((element) => {
-      element.onchange = function () {
-        if (element.checked) {
+      document.querySelectorAll(
+        ".product__item-btn"
+      ) as unknown as HTMLInputElement[]
+    ).forEach((element, index) => {
+      element.addEventListener("click", () => {
+        if (products[index].btn == "Добавить в корзину") {
+          products[index].btn = "Удалить";
+          element.innerHTML = "Удалить";
           count += 1;
           (
             document.querySelector(".header__basket-amount") as HTMLDivElement
           ).innerHTML = `${count}`;
-        } else if (!element.checked) {
+        } else if (products[index].btn == "Удалить") {
+          products[index].btn = "Добавить в корзину";
+          element.innerHTML = "Добавить в корзину";
           count -= 1;
           (
             document.querySelector(".header__basket-amount") as HTMLDivElement
           ).innerHTML = `${count}`;
         }
-      };
+      });
     });
   }
   rangeSlider(

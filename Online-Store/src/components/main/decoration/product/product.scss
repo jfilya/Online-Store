@@ -47,26 +47,10 @@ h5 {
     padding: 0 25px;
     position: relative;
     width: 80%;
-    display: block;
+    @include center;
     transition: 0.5s;
     &:hover {
       box-shadow: 0px 0px 14px #278d9f;
-    }
-    &::before {
-      content: "В Корзину";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      opacity: 1;
-    }
-    &::after {
-      content: "Удалить";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      opacity: 0;
     }
   }
   &__basket-add{
@@ -81,18 +65,9 @@ h5 {
     transition: 0.3s;
   }
 }
-.btnInput {
-  display: none;
-}
-.btnInput:checked + .product__item-btn {
-  &::before {
-    opacity: 0;
-  }
-  &::after {
-    opacity: 1;
-  }
-}
-.btnInput:checked + .product__item-btn + .product__basket-add {
+
+
+.product__basket-add.active-basket-item {
   opacity: 1;
 }
 .no-found{
