@@ -99,9 +99,6 @@ h4 {
     }
   }
 }
-.favorite-input {
-  display: none;
-}
 .favorite-label {
   transition: 0.5s;
   @include block-btn;
@@ -116,7 +113,7 @@ h4 {
     top: 10px;
   }
 }
-.favorite-input:checked + .favorite-label {
+.favorite-item.active {
   transform: scale(1.1);
   &:before {
     opacity: 1;
@@ -126,14 +123,14 @@ h4 {
 .favorite-camera {
   transition: 0.5s;
 }
-.favorite-input:checked + .favorite-icon {
+.favorite-icon.active-icon {
   transform: scale(1.1);
   img {
     background-color: cadetblue;
     border: 3px solid #ffffff;
   }
 }
-.favorite-input:checked + .favorite-camera {
+.favorite-camera.active-camera {
   transform: scale(1.1);
   border: 3px solid #ffffff;
   background-color: cadetblue;

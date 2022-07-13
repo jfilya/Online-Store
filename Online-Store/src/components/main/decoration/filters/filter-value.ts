@@ -13,57 +13,42 @@ class FilterValue {
   manufacturer(): void {
     this.filter.innerHTML += `<div class="filter-value__filter">Производитель:
       <div class="filter-value__list">
-        <input type="checkbox" class="favorite-input" id="samsung">
-          <label for="samsung" class="favorite-icon filter-value__phone">
-            <img src="assets/svg/samsung.svg" alt="samsung">
-          </label>
-        <input type="checkbox" class="favorite-input" id="apple">
-          <label for="apple" class="favorite-icon filter-value__phone">
-            <img class="favorite-icon" src="assets/svg/apple.svg" alt="apple"> 
-          </label>
-        <input type="checkbox" class="favorite-input" id="xiaomi">
-          <label for="xiaomi" class="favorite-icon filter-value__phone">
-            <img src="assets/svg/xiaomi.svg" alt="xiaomi">
-          </label>
+        <div class="favorite-icon filter-value__phone" id="samsung">
+          <img src="assets/svg/samsung.svg" alt="samsung">
+        </div>
+        <div class="favorite-icon filter-value__phone" id="apple">
+          <img class="favorite-icon" src="assets/svg/apple.svg" alt="apple"> 
+        </div>
+        <div class="favorite-icon filter-value__phone" id="xiaomi">
+          <img src="assets/svg/xiaomi.svg" alt="xiaomi">
+        </div>
       </div>
     </div>`;
   }
   numberCameras(): void {
     this.filter.innerHTML += `<div class="filter-value__filter">Количество камер:
     <div class="filter-value__list">
-      <input type="checkbox" class="favorite-input" id="camera4">
-      <label for="camera4" class="favorite-camera filter-value__number-cameras">4</label>
-      <input type="checkbox" class="favorite-input" id="camera3">
-      <label for="camera3" class="favorite-camera filter-value__number-cameras">3</label>
-      <input type="checkbox" class="favorite-input" id="camera2">
-      <label for="camera2" class="favorite-camera filter-value__number-cameras">2</label>
-      <input type="checkbox" class="favorite-input" id="camera1">
-      <label for="camera1" class="favorite-camera filter-value__number-cameras">1</label>
+      <div id="camera4" class="favorite-item favorite-camera filter-value__number-cameras">4</div>
+      <div id="camera3" class="favorite-item favorite-camera filter-value__number-cameras">3</div>
+      <div id="camera2" class="favorite-item favorite-camera filter-value__number-cameras">2</div>
+      <div id="camera1" class="favorite-item favorite-camera filter-value__number-cameras">1</div>
     </div>
   </div>`;
   }
   colorSort(): void {
     this.filter.innerHTML += `<div class="filter-value__filter">Цвет:
       <div class="filter-value__list">
-        <input type="checkbox" class="favorite-input" id="white">
-        <label for="white" class="favorite-label filter-value__color_white"></label>
-        <input type="checkbox" class="favorite-input" id="purple">
-        <label for="purple" class="favorite-label filter-value__color_purple"></label>
-        <input type="checkbox" class="favorite-input" id="blue">
-        <label for="blue" class="favorite-label filter-value__color_blue"></label>
-        <input type="checkbox" class="favorite-input" id="gray">
-        <label for="gray" class="favorite-label filter-value__color_gray"></label>
-        <input type="checkbox" class="favorite-input" id="black">
-        <label for="black" class="favorite-label filter-value__color_black"></label>
+        <div id="white" class="favorite-item favorite-label filter-value__color_white"></div>
+        <div id="purple" class="favorite-item favorite-label filter-value__color_purple"></div>
+        <div id="blue" class="favorite-item favorite-label filter-value__color_blue"></div>
+        <div id="gray" class="favorite-item favorite-label filter-value__color_gray"></div>
+        <div id="black" class="favorite-item favorite-label filter-value__color_black"></div>
       </div>
     </div>`;
   }
   popular(): void {
     this.filter.innerHTML += `<div class="filter-value__filter">Только популярные:
-      <div>
-        <input type="checkbox" class="favorite-input" id="checkbox">
-        <label for="checkbox" class="favorite-label"></label>
-      </div>
+        <div id="checkbox" for="checkbox" class="favorite-item favorite-label"></div>
     </div>`;
   }
   range(): void {
@@ -102,7 +87,7 @@ class FilterValue {
   reset(): void {
     this.filter.innerHTML += `<div class="filter-value__filter_reset">
       <button id="reset-filters">Сброс фильтров</button>
-      <button>Сброс настроек</button>
+      <button id="reset-settings">Сброс настроек</button>
     </div>`;
   }
 }
