@@ -3,7 +3,6 @@ import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
 import Main from "./components/main/main";
 import * as range from "./components/main/decoration/product/product";
-import Sort from "./components/main/decoration/sort";
 import { products } from "./components/main/decoration/product/product-list";
 
 const header = new Header();
@@ -16,7 +15,4 @@ main.appendSectionProducts();
 const footer = new Footer();
 footer.innerFooter();
 range.rangeBuild();
-const sort = new Sort();
-sort.sortAscendingDescending();
-sort.searchBox();
 console.log(products);
