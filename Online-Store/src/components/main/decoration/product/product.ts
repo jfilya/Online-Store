@@ -121,6 +121,7 @@ class Products {
         this.searchBoxValue();
         this.sortAscendingDescending();
         this.onlyPopular();
+        this.outputMessageNotFound();
       });
     }
   }
@@ -298,6 +299,20 @@ class Products {
       checkboxPupular.classList.toggle("active-checkbox");
       this.onlyPopular();
     });
+  }
+  outputMessageNotFound(): void {
+    if (
+      (document.querySelector(".product") as unknown as HTMLDivElement)
+        .childNodes.length === 0
+    ) {
+      (
+        document.querySelector(".no-found") as HTMLParagraphElement
+      ).style.display = "block";
+    } else {
+      (
+        document.querySelector(".no-found") as HTMLParagraphElement
+      ).style.display = "none";
+    }
   }
 }
 
