@@ -113,7 +113,7 @@ h4 {
     top: 10px;
   }
 }
-#checkbox.active-checkbox {
+.active-checkbox {
   transform: scale(1.1);
   &:before {
     opacity: 1;

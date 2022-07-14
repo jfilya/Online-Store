@@ -5,11 +5,21 @@ import "./product.scss";
 class Products {
   public productItem: HTMLDivElement;
   public products: IProducts[];
-  public productsNotPopular: IProducts[];
+  private productsNotPopular: IProducts[];
+  private productsColorWhite: IProducts[];
+  private productsColorPurple: IProducts[];
+  private productsColorBlue: IProducts[];
+  private productsColorGray: IProducts[];
+  private productsColorBlack: IProducts[];
   constructor() {
     this.products = products;
     this.productItem = document.createElement("div");
     this.productsNotPopular = [];
+    this.productsColorWhite = [];
+    this.productsColorPurple = [];
+    this.productsColorBlue = [];
+    this.productsColorGray = [];
+    this.productsColorBlack = [];
   }
   innerProduct(): void {
     (
@@ -110,7 +120,7 @@ class Products {
       const sliderYearEnd = document.querySelector(
         ".slider-year-end"
       ) as HTMLDivElement;
-      this.products = this.filterBtnAll();
+      console.log(this.productsNotPopular);
       sliderName.noUiSlider.on("update", () => {
         this.buildProductitem(
           this.products.filter(
@@ -278,25 +288,104 @@ class Products {
     const checkboxPupular = document.getElementById(
       "checkbox"
     ) as HTMLDivElement;
+
+    const whiteBtn = document.getElementById("white") as HTMLDivElement;
+    const purpleBtn = document.getElementById("purple") as HTMLDivElement;
+    const blueBtn = document.getElementById("blue") as HTMLDivElement;
+    const grayBtn = document.getElementById("gray") as HTMLDivElement;
+    const blackBtn = document.getElementById("black") as HTMLDivElement;
+
     if (checkboxPupular.classList.contains("active-checkbox")) {
-      this.productsNotPopular = this.products.filter((p) => !p.popular[1]);
+      this.products.forEach((p) => {
+        if (p.popular[0] === "нет") {
+          this.productsNotPopular.push(p);
+        }
+      });
       this.products = this.products.filter((p) => p.popular[1]);
-    } else if (!checkboxPupular.classList.contains("active-checkbox")) {
+    }
+    if (!checkboxPupular.classList.contains("active-checkbox")) {
       this.products.push(...this.productsNotPopular);
       this.productsNotPopular.splice(0, this.productsNotPopular.length);
     }
+
+    if (whiteBtn.classList.contains("active-checkbox")) {
+      this.products.forEach((p) => {
+        if (p.color[1] !== "white") {
+          this.productsColorWhite.push(p);
+        }
+      });
+      this.products = this.products.filter((p) => p.color[1] === "white");
+    }
+    if (!whiteBtn.classList.contains("active-checkbox")) {
+      this.products.push(...this.productsColorWhite);
+      this.productsColorWhite.splice(0, this.productsColorWhite.length);
+    }
+    if (purpleBtn.classList.contains("active-checkbox")) {
+      this.products.forEach((p) => {
+        if (p.color[1] !== "purple") {
+          this.productsColorPurple.push(p);
+        }
+      });
+      this.products = this.products.filter((p) => p.color[1] === "purple");
+    }
+    if (!purpleBtn.classList.contains("active-checkbox")) {
+      this.products.push(...this.productsColorPurple);
+      this.productsColorPurple.splice(0, this.productsColorPurple.length);
+    }
+    if (blueBtn.classList.contains("active-checkbox")) {
+      this.products.forEach((p) => {
+        if (p.color[1] !== "blue") {
+          this.productsColorBlue.push(p);
+        }
+      });
+      this.products = this.products.filter((p) => p.color[1] === "blue");
+    }
+    if (!blueBtn.classList.contains("active-checkbox")) {
+      this.products.push(...this.productsColorBlue);
+      this.productsColorBlue.splice(0, this.productsColorBlue.length);
+    }
+    if (grayBtn.classList.contains("active-checkbox")) {
+      this.products.forEach((p) => {
+        if (p.color[1] !== "gray") {
+          this.productsColorGray.push(p);
+        }
+      });
+      this.products = this.products.filter((p) => p.color[1] === "gray");
+    }
+    if (!grayBtn.classList.contains("active-checkbox")) {
+      this.products.push(...this.productsColorGray);
+      this.productsColorGray.splice(0, this.productsColorGray.length);
+    }
+    if (blackBtn.classList.contains("active-checkbox")) {
+      this.products.forEach((p) => {
+        if (p.color[1] !== "black") {
+          this.productsColorBlack.push(p);
+        }
+      });
+      this.products = this.products.filter((p) => p.color[1] === "black");
+    }
+    if (!blackBtn.classList.contains("active-checkbox")) {
+      this.products.push(...this.productsColorBlack);
+      this.productsColorBlack.splice(0, this.productsColorBlack.length);
+    }
+
     return this.products;
   }
   filterBtnAllClick(): void {
-    const checkboxPupular = document.getElementById(
-      "checkbox"
-    ) as HTMLDivElement;
-    checkboxPupular.addEventListener("click", () => {
-      checkboxPupular.classList.toggle("active-checkbox");
-      this.filterBtnAll();
-      this.buildProductitem(this.products);
-      this.sortAscendingDescending();
-    });
+    const activeBtnFilter = (checkbox: HTMLDivElement) => {
+      checkbox.addEventListener("click", () => {
+        checkbox.classList.toggle("active-checkbox");
+        this.filterBtnAll();
+        this.buildProductitem(this.products);
+        this.sortAscendingDescending();
+      });
+    };
+    activeBtnFilter(document.getElementById("checkbox") as HTMLDivElement);
+    activeBtnFilter(document.getElementById("white") as HTMLDivElement);
+    activeBtnFilter(document.getElementById("purple") as HTMLDivElement);
+    activeBtnFilter(document.getElementById("blue") as HTMLDivElement);
+    activeBtnFilter(document.getElementById("gray") as HTMLDivElement);
+    activeBtnFilter(document.getElementById("black") as HTMLDivElement);
   }
   outputMessageNotFound(): void {
     if (
