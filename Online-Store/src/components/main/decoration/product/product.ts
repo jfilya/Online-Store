@@ -14,6 +14,10 @@ class Products {
   private productsSamsung: IProducts[];
   private productsApple: IProducts[];
   private productsXiaomi: IProducts[];
+  private productsCameras1: IProducts[];
+  private productsCameras2: IProducts[];
+  private productsCameras3: IProducts[];
+  private productsCameras4: IProducts[];
   constructor() {
     this.products = products;
     this.productItem = document.createElement("div");
@@ -26,6 +30,10 @@ class Products {
     this.productsSamsung = [];
     this.productsApple = [];
     this.productsXiaomi = [];
+    this.productsCameras1 = [];
+    this.productsCameras2 = [];
+    this.productsCameras3 = [];
+    this.productsCameras4 = [];
   }
   innerProduct(): void {
     (
@@ -42,7 +50,7 @@ class Products {
     for (const prod of p) {
       (
         document.querySelector(".product") as HTMLElement
-      ).innerHTML += `<div id="${prod.id}" class="product__item ${prod.manufacturer}" name-sort="${prod.name}" year-sort="${prod.year}" popular="${prod.popular[0]}">
+      ).innerHTML += `<div id="${prod.id}" class="product__item ${prod.manufacturer}" name-sort="${prod.name}" year-sort="${prod.year}" popular="${prod.popular[0]}" cameras="${prod.numberOfCameras}">
         <img src="${prod.img}" alt="${prod.name}" class="product__item-image">
         <h5 class="product__item-title">${prod.name}</h5>
         <p>Цена: ${prod.price} руб</p>
@@ -305,10 +313,14 @@ class Products {
     const blueBtn = document.getElementById("blue") as HTMLDivElement;
     const grayBtn = document.getElementById("gray") as HTMLDivElement;
     const blackBtn = document.getElementById("black") as HTMLDivElement;
-
     const samsung = document.getElementById("samsung") as HTMLDivElement;
     const apple = document.getElementById("apple") as HTMLDivElement;
     const xiaomi = document.getElementById("xiaomi") as HTMLDivElement;
+
+    const camera1 = document.getElementById("camera1") as HTMLDivElement;
+    const camera2 = document.getElementById("camera2") as HTMLDivElement;
+    const camera3 = document.getElementById("camera3") as HTMLDivElement;
+    const camera4 = document.getElementById("camera4") as HTMLDivElement;
 
     if (checkboxPupular.classList.contains("active-checkbox")) {
       this.products.forEach((p) => {
@@ -322,7 +334,6 @@ class Products {
       this.products.push(...this.productsNotPopular);
       this.productsNotPopular.splice(0, this.productsNotPopular.length);
     }
-
     const selectColor: selectElement = (element, array, text) => {
       if (element.classList.contains("active-checkbox")) {
         this.products.forEach((p) => {
@@ -337,7 +348,7 @@ class Products {
         array.splice(0, array.length);
       }
     };
-    selectColor(whiteBtn, this.productsColorWhite, "vhite");
+    selectColor(whiteBtn, this.productsColorWhite, "white");
     selectColor(purpleBtn, this.productsColorPurple, "purple");
     selectColor(blueBtn, this.productsColorBlue, "blue");
     selectColor(grayBtn, this.productsColorGray, "gray");
@@ -361,36 +372,116 @@ class Products {
     selectManufacturer(apple, this.productsApple, "apple");
     selectManufacturer(xiaomi, this.productsXiaomi, "xiaomi");
 
+    const selectCameras: selectElement = (element, array, text) => {
+      if (element.classList.contains("active-icon")) {
+        this.products.forEach((p) => {
+          if (p.numberOfCameras !== +text) {
+            array.push(p);
+          }
+        });
+        this.products = this.products.filter(
+          (p) => p.numberOfCameras === +text
+        );
+      }
+      if (!element.classList.contains("active-icon")) {
+        this.products.push(...array);
+        array.splice(0, array.length);
+      }
+    };
+    selectCameras(camera1, this.productsCameras1, "1");
+    selectCameras(camera2, this.productsCameras2, "2");
+    selectCameras(camera3, this.productsCameras3, "3");
+    selectCameras(camera4, this.productsCameras4, "4");
+
     return this.products;
   }
   filterBtnAllClick(): void {
-    const activeBtnFilter = (checkbox: HTMLDivElement) => {
+    const sliderValueStart = document.querySelector(
+      ".slider-value-start"
+    ) as HTMLDivElement;
+    const sliderValueEnd = document.querySelector(
+      ".slider-value-end"
+    ) as HTMLDivElement;
+    const sliderYearStart = document.querySelector(
+      ".slider-year-start"
+    ) as HTMLDivElement;
+    const sliderYearEnd = document.querySelector(
+      ".slider-year-end"
+    ) as HTMLDivElement;
+    const activeBtnFilter = (
+      checkbox: HTMLDivElement,
+      nameClassAdd: string
+    ) => {
       checkbox.addEventListener("click", () => {
-        checkbox.classList.toggle("active-checkbox");
+        checkbox.classList.toggle(nameClassAdd);
         this.filterBtnAll();
-        this.buildProductitem(this.products);
+        this.buildProductitem(
+          this.products.filter(
+            (p: IProducts) =>
+              p.amount >= +sliderValueStart.innerText &&
+              p.amount <= +sliderValueEnd.innerText &&
+              p.year >= +sliderYearStart.innerText &&
+              p.year <= +sliderYearEnd.innerText
+          )
+        );
         this.sortAscendingDescending();
         this.outputMessageNotFound();
+        this.searchBoxValue();
       });
     };
-    const activeBtnFilterType = (checkbox: HTMLDivElement) => {
-      checkbox.addEventListener("click", () => {
-        checkbox.classList.toggle("active-icon");
-        this.filterBtnAll();
-        this.buildProductitem(this.products);
-        this.sortAscendingDescending();
-        this.outputMessageNotFound();
-      });
-    };
-    activeBtnFilter(document.getElementById("checkbox") as HTMLDivElement);
-    activeBtnFilter(document.getElementById("white") as HTMLDivElement);
-    activeBtnFilter(document.getElementById("purple") as HTMLDivElement);
-    activeBtnFilter(document.getElementById("blue") as HTMLDivElement);
-    activeBtnFilter(document.getElementById("gray") as HTMLDivElement);
-    activeBtnFilter(document.getElementById("black") as HTMLDivElement);
-    activeBtnFilterType(document.getElementById("samsung") as HTMLDivElement);
-    activeBtnFilterType(document.getElementById("apple") as HTMLDivElement);
-    activeBtnFilterType(document.getElementById("xiaomi") as HTMLDivElement);
+    activeBtnFilter(
+      document.getElementById("checkbox") as HTMLDivElement,
+      "active-checkbox"
+    );
+    activeBtnFilter(
+      document.getElementById("white") as HTMLDivElement,
+      "active-checkbox"
+    );
+    activeBtnFilter(
+      document.getElementById("purple") as HTMLDivElement,
+      "active-checkbox"
+    );
+    activeBtnFilter(
+      document.getElementById("blue") as HTMLDivElement,
+      "active-checkbox"
+    );
+    activeBtnFilter(
+      document.getElementById("gray") as HTMLDivElement,
+      "active-checkbox"
+    );
+    activeBtnFilter(
+      document.getElementById("black") as HTMLDivElement,
+      "active-checkbox"
+    );
+
+    activeBtnFilter(
+      document.getElementById("samsung") as HTMLDivElement,
+      "active-icon"
+    );
+    activeBtnFilter(
+      document.getElementById("apple") as HTMLDivElement,
+      "active-icon"
+    );
+    activeBtnFilter(
+      document.getElementById("xiaomi") as HTMLDivElement,
+      "active-icon"
+    );
+    activeBtnFilter(
+      document.getElementById("camera1") as HTMLDivElement,
+      "active-icon"
+    );
+    activeBtnFilter(
+      document.getElementById("camera2") as HTMLDivElement,
+      "active-icon"
+    );
+    activeBtnFilter(
+      document.getElementById("camera3") as HTMLDivElement,
+      "active-icon"
+    );
+    activeBtnFilter(
+      document.getElementById("camera4") as HTMLDivElement,
+      "active-icon"
+    );
   }
   outputMessageNotFound(): void {
     if (
