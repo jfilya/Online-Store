@@ -123,14 +123,16 @@ h4 {
 .favorite-camera {
   transition: 0.5s;
 }
-.favorite-icon.active-icon {
+#samsung.active-icon,
+#apple.active-icon,
+#xiaomi.active-icon {
   transform: scale(1.1);
   img {
     background-color: cadetblue;
     border: 3px solid #ffffff;
   }
 }
-.favorite-camera.active-camera {
+.favorite-camera.active-icon {
   transform: scale(1.1);
   border: 3px solid #ffffff;
   background-color: cadetblue;

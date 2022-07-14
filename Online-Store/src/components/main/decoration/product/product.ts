@@ -11,6 +11,9 @@ class Products {
   private productsColorBlue: IProducts[];
   private productsColorGray: IProducts[];
   private productsColorBlack: IProducts[];
+  private productsSamsung: IProducts[];
+  private productsApple: IProducts[];
+  private productsXiaomi: IProducts[];
   constructor() {
     this.products = products;
     this.productItem = document.createElement("div");
@@ -20,6 +23,9 @@ class Products {
     this.productsColorBlue = [];
     this.productsColorGray = [];
     this.productsColorBlack = [];
+    this.productsSamsung = [];
+    this.productsApple = [];
+    this.productsXiaomi = [];
   }
   innerProduct(): void {
     (
@@ -120,8 +126,8 @@ class Products {
       const sliderYearEnd = document.querySelector(
         ".slider-year-end"
       ) as HTMLDivElement;
-      console.log(this.productsNotPopular);
       sliderName.noUiSlider.on("update", () => {
+        this.products = this.filterBtnAll();
         this.buildProductitem(
           this.products.filter(
             (p: IProducts) =>
@@ -131,7 +137,6 @@ class Products {
               p.year <= +sliderYearEnd.innerText
           )
         );
-        this.filterBtnAll();
         this.searchBoxValue();
         this.outputMessageNotFound();
         this.sortAscendingDescending();
@@ -295,6 +300,10 @@ class Products {
     const grayBtn = document.getElementById("gray") as HTMLDivElement;
     const blackBtn = document.getElementById("black") as HTMLDivElement;
 
+    const samsung = document.getElementById("samsung") as HTMLDivElement;
+    const apple = document.getElementById("apple") as HTMLDivElement;
+    const xiaomi = document.getElementById("xiaomi") as HTMLDivElement;
+
     if (checkboxPupular.classList.contains("active-checkbox")) {
       this.products.forEach((p) => {
         if (p.popular[0] === "нет") {
@@ -369,12 +378,58 @@ class Products {
       this.productsColorBlack.splice(0, this.productsColorBlack.length);
     }
 
+    if (samsung.classList.contains("active-icon")) {
+      this.products.forEach((p) => {
+        if (p.manufacturer !== "samsung") {
+          this.productsSamsung.push(p);
+        }
+      });
+      this.products = this.products.filter((p) => p.manufacturer === "samsung");
+    }
+    if (!samsung.classList.contains("active-icon")) {
+      this.products.push(...this.productsSamsung);
+      this.productsSamsung.splice(0, this.productsSamsung.length);
+    }
+    if (apple.classList.contains("active-icon")) {
+      this.products.forEach((p) => {
+        if (p.manufacturer !== "apple") {
+          this.productsApple.push(p);
+        }
+      });
+      this.products = this.products.filter((p) => p.manufacturer === "apple");
+    }
+    if (!apple.classList.contains("active-icon")) {
+      this.products.push(...this.productsApple);
+      this.productsApple.splice(0, this.productsApple.length);
+    }
+    if (xiaomi.classList.contains("active-icon")) {
+      this.products.forEach((p) => {
+        if (p.manufacturer !== "xiaomi") {
+          this.productsXiaomi.push(p);
+        }
+      });
+      this.products = this.products.filter((p) => p.manufacturer === "xiaomi");
+    }
+    if (!xiaomi.classList.contains("active-icon")) {
+      this.products.push(...this.productsXiaomi);
+      this.productsXiaomi.splice(0, this.productsXiaomi.length);
+    }
+
     return this.products;
   }
   filterBtnAllClick(): void {
+    console.log(document.getElementById("samsung") as HTMLDivElement);
     const activeBtnFilter = (checkbox: HTMLDivElement) => {
       checkbox.addEventListener("click", () => {
         checkbox.classList.toggle("active-checkbox");
+        this.filterBtnAll();
+        this.buildProductitem(this.products);
+        this.sortAscendingDescending();
+      });
+    };
+    const activeBtnFilterType = (checkbox: HTMLDivElement) => {
+      checkbox.addEventListener("click", () => {
+        checkbox.classList.toggle("active-icon");
         this.filterBtnAll();
         this.buildProductitem(this.products);
         this.sortAscendingDescending();
@@ -386,6 +441,9 @@ class Products {
     activeBtnFilter(document.getElementById("blue") as HTMLDivElement);
     activeBtnFilter(document.getElementById("gray") as HTMLDivElement);
     activeBtnFilter(document.getElementById("black") as HTMLDivElement);
+    activeBtnFilterType(document.getElementById("samsung") as HTMLDivElement);
+    activeBtnFilterType(document.getElementById("apple") as HTMLDivElement);
+    activeBtnFilterType(document.getElementById("xiaomi") as HTMLDivElement);
   }
   outputMessageNotFound(): void {
     if (
