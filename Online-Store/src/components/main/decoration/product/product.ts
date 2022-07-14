@@ -290,6 +290,12 @@ class Products {
     }
   }
   filterBtnAll(): IProducts[] {
+    type selectElement = (
+      element: HTMLDivElement,
+      array: IProducts[],
+      text: string
+    ) => void;
+
     const checkboxPupular = document.getElementById(
       "checkbox"
     ) as HTMLDivElement;
@@ -317,114 +323,54 @@ class Products {
       this.productsNotPopular.splice(0, this.productsNotPopular.length);
     }
 
-    if (whiteBtn.classList.contains("active-checkbox")) {
-      this.products.forEach((p) => {
-        if (p.color[1] !== "white") {
-          this.productsColorWhite.push(p);
-        }
-      });
-      this.products = this.products.filter((p) => p.color[1] === "white");
-    }
-    if (!whiteBtn.classList.contains("active-checkbox")) {
-      this.products.push(...this.productsColorWhite);
-      this.productsColorWhite.splice(0, this.productsColorWhite.length);
-    }
-    if (purpleBtn.classList.contains("active-checkbox")) {
-      this.products.forEach((p) => {
-        if (p.color[1] !== "purple") {
-          this.productsColorPurple.push(p);
-        }
-      });
-      this.products = this.products.filter((p) => p.color[1] === "purple");
-    }
-    if (!purpleBtn.classList.contains("active-checkbox")) {
-      this.products.push(...this.productsColorPurple);
-      this.productsColorPurple.splice(0, this.productsColorPurple.length);
-    }
-    if (blueBtn.classList.contains("active-checkbox")) {
-      this.products.forEach((p) => {
-        if (p.color[1] !== "blue") {
-          this.productsColorBlue.push(p);
-        }
-      });
-      this.products = this.products.filter((p) => p.color[1] === "blue");
-    }
-    if (!blueBtn.classList.contains("active-checkbox")) {
-      this.products.push(...this.productsColorBlue);
-      this.productsColorBlue.splice(0, this.productsColorBlue.length);
-    }
-    if (grayBtn.classList.contains("active-checkbox")) {
-      this.products.forEach((p) => {
-        if (p.color[1] !== "gray") {
-          this.productsColorGray.push(p);
-        }
-      });
-      this.products = this.products.filter((p) => p.color[1] === "gray");
-    }
-    if (!grayBtn.classList.contains("active-checkbox")) {
-      this.products.push(...this.productsColorGray);
-      this.productsColorGray.splice(0, this.productsColorGray.length);
-    }
-    if (blackBtn.classList.contains("active-checkbox")) {
-      this.products.forEach((p) => {
-        if (p.color[1] !== "black") {
-          this.productsColorBlack.push(p);
-        }
-      });
-      this.products = this.products.filter((p) => p.color[1] === "black");
-    }
-    if (!blackBtn.classList.contains("active-checkbox")) {
-      this.products.push(...this.productsColorBlack);
-      this.productsColorBlack.splice(0, this.productsColorBlack.length);
-    }
+    const selectColor: selectElement = (element, array, text) => {
+      if (element.classList.contains("active-checkbox")) {
+        this.products.forEach((p) => {
+          if (p.color[1] !== text) {
+            array.push(p);
+          }
+        });
+        this.products = this.products.filter((p) => p.color[1] === text);
+      }
+      if (!element.classList.contains("active-checkbox")) {
+        this.products.push(...array);
+        array.splice(0, array.length);
+      }
+    };
+    selectColor(whiteBtn, this.productsColorWhite, "vhite");
+    selectColor(purpleBtn, this.productsColorPurple, "purple");
+    selectColor(blueBtn, this.productsColorBlue, "blue");
+    selectColor(grayBtn, this.productsColorGray, "gray");
+    selectColor(blackBtn, this.productsColorBlack, "black");
 
-    if (samsung.classList.contains("active-icon")) {
-      this.products.forEach((p) => {
-        if (p.manufacturer !== "samsung") {
-          this.productsSamsung.push(p);
-        }
-      });
-      this.products = this.products.filter((p) => p.manufacturer === "samsung");
-    }
-    if (!samsung.classList.contains("active-icon")) {
-      this.products.push(...this.productsSamsung);
-      this.productsSamsung.splice(0, this.productsSamsung.length);
-    }
-    if (apple.classList.contains("active-icon")) {
-      this.products.forEach((p) => {
-        if (p.manufacturer !== "apple") {
-          this.productsApple.push(p);
-        }
-      });
-      this.products = this.products.filter((p) => p.manufacturer === "apple");
-    }
-    if (!apple.classList.contains("active-icon")) {
-      this.products.push(...this.productsApple);
-      this.productsApple.splice(0, this.productsApple.length);
-    }
-    if (xiaomi.classList.contains("active-icon")) {
-      this.products.forEach((p) => {
-        if (p.manufacturer !== "xiaomi") {
-          this.productsXiaomi.push(p);
-        }
-      });
-      this.products = this.products.filter((p) => p.manufacturer === "xiaomi");
-    }
-    if (!xiaomi.classList.contains("active-icon")) {
-      this.products.push(...this.productsXiaomi);
-      this.productsXiaomi.splice(0, this.productsXiaomi.length);
-    }
+    const selectManufacturer: selectElement = (element, array, text) => {
+      if (element.classList.contains("active-icon")) {
+        this.products.forEach((p) => {
+          if (p.manufacturer !== text) {
+            array.push(p);
+          }
+        });
+        this.products = this.products.filter((p) => p.manufacturer === text);
+      }
+      if (!element.classList.contains("active-icon")) {
+        this.products.push(...array);
+        array.splice(0, array.length);
+      }
+    };
+    selectManufacturer(samsung, this.productsSamsung, "samsung");
+    selectManufacturer(apple, this.productsApple, "apple");
+    selectManufacturer(xiaomi, this.productsXiaomi, "xiaomi");
 
     return this.products;
   }
   filterBtnAllClick(): void {
-    console.log(document.getElementById("samsung") as HTMLDivElement);
     const activeBtnFilter = (checkbox: HTMLDivElement) => {
       checkbox.addEventListener("click", () => {
         checkbox.classList.toggle("active-checkbox");
         this.filterBtnAll();
         this.buildProductitem(this.products);
         this.sortAscendingDescending();
+        this.outputMessageNotFound();
       });
     };
     const activeBtnFilterType = (checkbox: HTMLDivElement) => {
@@ -433,6 +379,7 @@ class Products {
         this.filterBtnAll();
         this.buildProductitem(this.products);
         this.sortAscendingDescending();
+        this.outputMessageNotFound();
       });
     };
     activeBtnFilter(document.getElementById("checkbox") as HTMLDivElement);
