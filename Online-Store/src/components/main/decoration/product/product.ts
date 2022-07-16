@@ -77,29 +77,31 @@ class Products {
       ) as unknown as HTMLDivElement[]
     ).forEach((element) => {
       element.addEventListener("click", () => {
-        if (element.innerHTML == "Добавить в корзину") {
-          this.products.forEach((p) => {
-            if ((element.parentNode as HTMLDivElement).id === p.id) {
-              p.btn = "Удалить";
-            }
-          });
-          element.innerHTML = "Удалить";
-          count += 1;
-          (
-            document.querySelector(".header__basket-amount") as HTMLDivElement
-          ).innerHTML = `${count}`;
-        } else if (element.innerHTML == "Удалить") {
-          this.products.forEach((p) => {
-            if ((element.parentNode as HTMLDivElement).id === p.id) {
-              p.btn = "Добавить в корзину";
-            }
-          });
-          element.innerHTML = "Добавить в корзину";
-          count -= 1;
-          (
-            document.querySelector(".header__basket-amount") as HTMLDivElement
-          ).innerHTML = `${count}`;
-        }
+        if (count < 20) {
+          if (element.innerHTML == "Добавить в корзину") {
+            this.products.forEach((p) => {
+              if ((element.parentNode as HTMLDivElement).id === p.id) {
+                p.btn = "Удалить";
+              }
+            });
+            element.innerHTML = "Удалить";
+            count += 1;
+            (
+              document.querySelector(".header__basket-amount") as HTMLDivElement
+            ).innerHTML = `${count}`;
+          } else if (element.innerHTML == "Удалить") {
+            this.products.forEach((p) => {
+              if ((element.parentNode as HTMLDivElement).id === p.id) {
+                p.btn = "Добавить в корзину";
+              }
+            });
+            element.innerHTML = "Добавить в корзину";
+            count -= 1;
+            (
+              document.querySelector(".header__basket-amount") as HTMLDivElement
+            ).innerHTML = `${count}`;
+          }
+        } else alert("Извините, все слоты заполнены");
       });
     });
   }
