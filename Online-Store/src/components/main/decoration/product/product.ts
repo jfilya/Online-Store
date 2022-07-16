@@ -545,21 +545,19 @@ class Products {
         document.querySelector(".no-found") as HTMLParagraphElement
       ).style.display = "none";
       (document.getElementById("search-text") as HTMLInputElement).value = "";
-      (
-        document.querySelectorAll("option") as unknown as HTMLOptionElement[]
-      ).forEach((el) => {
-        el.selected = el.defaultSelected;
-      });
 
-      this.products.splice(0, this.products.length);
-      this.products.push(...this.workArray);
       (
         document.querySelector(".slider-value") as noUiSlider.target
       ).noUiSlider.reset();
       (
         document.querySelector(".slider-year") as noUiSlider.target
       ).noUiSlider.reset();
-      this.buildProductitem(this.products);
+
+      this.buildProductitem(this.workArray);
+      (
+        document.querySelectorAll("option") as unknown as HTMLOptionElement[]
+      )[0].selected = true;
+      this.sortAscendingDescending();
     });
   }
 }
