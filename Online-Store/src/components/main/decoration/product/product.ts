@@ -76,6 +76,14 @@ class Products {
         ".product__item-btn"
       ) as unknown as HTMLDivElement[]
     ).forEach((element) => {
+      if (element.innerHTML == "Добавить в корзину") {
+        (element.parentNode as HTMLDivElement).classList.remove(
+          "active-before"
+        );
+      }
+      if (element.innerHTML == "Удалить") {
+        (element.parentNode as HTMLDivElement).classList.add("active-before");
+      }
       element.addEventListener("click", () => {
         if (count < 20) {
           if (element.innerHTML == "Добавить в корзину") {
@@ -85,6 +93,9 @@ class Products {
               }
             });
             element.innerHTML = "Удалить";
+            (element.parentNode as HTMLDivElement).classList.add(
+              "active-before"
+            );
             count += 1;
             (
               document.querySelector(".header__basket-amount") as HTMLDivElement
@@ -96,6 +107,9 @@ class Products {
               }
             });
             element.innerHTML = "Добавить в корзину";
+            (element.parentNode as HTMLDivElement).classList.remove(
+              "active-before"
+            );
             count -= 1;
             (
               document.querySelector(".header__basket-amount") as HTMLDivElement
