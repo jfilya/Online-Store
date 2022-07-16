@@ -45,6 +45,7 @@ class Main {
     this.products.searchOninput();
     this.products.sortAscendingDescendingOnchange();
     this.products.filterBtnAllClick();
+    this.products.resetFilters();
   }
 }
 

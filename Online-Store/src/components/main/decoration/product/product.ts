@@ -5,6 +5,7 @@ import "./product.scss";
 class Products {
   public productItem: HTMLDivElement;
   public products: IProducts[];
+  private workArray: IProducts[];
   private productsNotPopular: IProducts[];
   private productsColorWhite: IProducts[];
   private productsColorPurple: IProducts[];
@@ -20,6 +21,7 @@ class Products {
   private productsCameras4: IProducts[];
   constructor() {
     this.products = products;
+    this.workArray = products;
     this.productItem = document.createElement("div");
     this.productsNotPopular = [];
     this.productsColorWhite = [];
@@ -496,6 +498,69 @@ class Products {
         document.querySelector(".no-found") as HTMLParagraphElement
       ).style.display = "none";
     }
+  }
+  resetFilters(): void {
+    (
+      document.getElementById("reset-filters") as HTMLDivElement
+    ).addEventListener("click", () => {
+      const checkboxPupular = document.getElementById(
+        "checkbox"
+      ) as HTMLDivElement;
+      const whiteBtn = document.getElementById("white") as HTMLDivElement;
+      const purpleBtn = document.getElementById("purple") as HTMLDivElement;
+      const blueBtn = document.getElementById("blue") as HTMLDivElement;
+      const grayBtn = document.getElementById("gray") as HTMLDivElement;
+      const blackBtn = document.getElementById("black") as HTMLDivElement;
+      const samsung = document.getElementById("samsung") as HTMLDivElement;
+      const apple = document.getElementById("apple") as HTMLDivElement;
+      const xiaomi = document.getElementById("xiaomi") as HTMLDivElement;
+      const camera1 = document.getElementById("camera1") as HTMLDivElement;
+      const camera2 = document.getElementById("camera2") as HTMLDivElement;
+      const camera3 = document.getElementById("camera3") as HTMLDivElement;
+      const camera4 = document.getElementById("camera4") as HTMLDivElement;
+      const arrayFiltersCheckbox = [
+        checkboxPupular,
+        whiteBtn,
+        purpleBtn,
+        blueBtn,
+        grayBtn,
+        blackBtn,
+      ];
+      const arrayFiltersIcon = [
+        samsung,
+        apple,
+        xiaomi,
+        camera1,
+        camera2,
+        camera3,
+        camera4,
+      ];
+      arrayFiltersCheckbox.forEach((element) =>
+        element.classList.remove("active-checkbox")
+      );
+      arrayFiltersIcon.forEach((element) =>
+        element.classList.remove("active-icon")
+      );
+      (
+        document.querySelector(".no-found") as HTMLParagraphElement
+      ).style.display = "none";
+      (document.getElementById("search-text") as HTMLInputElement).value = "";
+      (
+        document.querySelectorAll("option") as unknown as HTMLOptionElement[]
+      ).forEach((el) => {
+        el.selected = el.defaultSelected;
+      });
+
+      this.products.splice(0, this.products.length);
+      this.products.push(...this.workArray);
+      (
+        document.querySelector(".slider-value") as noUiSlider.target
+      ).noUiSlider.reset();
+      (
+        document.querySelector(".slider-year") as noUiSlider.target
+      ).noUiSlider.reset();
+      this.buildProductitem(this.products);
+    });
   }
 }
 
