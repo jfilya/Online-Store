@@ -85,8 +85,9 @@ class Products {
         (element.parentNode as HTMLDivElement).classList.add("active-before");
       }
       element.addEventListener("click", () => {
-        if (count < 20) {
-          if (element.innerHTML == "Добавить в корзину") {
+        if (element.innerHTML == "Добавить в корзину") {
+          if (count == 20) alert("Извините, все слоты заполнены");
+          if (count < 20) {
             this.products.forEach((p) => {
               if ((element.parentNode as HTMLDivElement).id === p.id) {
                 p.btn = "Удалить";
@@ -100,22 +101,22 @@ class Products {
             (
               document.querySelector(".header__basket-amount") as HTMLDivElement
             ).innerHTML = `${count}`;
-          } else if (element.innerHTML == "Удалить") {
-            this.products.forEach((p) => {
-              if ((element.parentNode as HTMLDivElement).id === p.id) {
-                p.btn = "Добавить в корзину";
-              }
-            });
-            element.innerHTML = "Добавить в корзину";
-            (element.parentNode as HTMLDivElement).classList.remove(
-              "active-before"
-            );
-            count -= 1;
-            (
-              document.querySelector(".header__basket-amount") as HTMLDivElement
-            ).innerHTML = `${count}`;
           }
-        } else alert("Извините, все слоты заполнены");
+        } else if (element.innerHTML == "Удалить") {
+          this.products.forEach((p) => {
+            if ((element.parentNode as HTMLDivElement).id === p.id) {
+              p.btn = "Добавить в корзину";
+            }
+          });
+          element.innerHTML = "Добавить в корзину";
+          (element.parentNode as HTMLDivElement).classList.remove(
+            "active-before"
+          );
+          count -= 1;
+          (
+            document.querySelector(".header__basket-amount") as HTMLDivElement
+          ).innerHTML = `${count}`;
+        }
       });
     });
   }
