@@ -330,8 +330,8 @@ class Products {
     const whiteBtn = document.getElementById("white") as HTMLDivElement;
     const purpleBtn = document.getElementById("purple") as HTMLDivElement;
     const blueBtn = document.getElementById("blue") as HTMLDivElement;
-    const grayBtn = document.getElementById("gray") as HTMLDivElement;
     const blackBtn = document.getElementById("black") as HTMLDivElement;
+
     const samsung = document.getElementById("samsung") as HTMLDivElement;
     const apple = document.getElementById("apple") as HTMLDivElement;
     const xiaomi = document.getElementById("xiaomi") as HTMLDivElement;
@@ -339,7 +339,6 @@ class Products {
     const camera1 = document.getElementById("camera1") as HTMLDivElement;
     const camera2 = document.getElementById("camera2") as HTMLDivElement;
     const camera3 = document.getElementById("camera3") as HTMLDivElement;
-    const camera4 = document.getElementById("camera4") as HTMLDivElement;
 
     if (checkboxPupular.classList.contains("active-checkbox")) {
       this.products.forEach((p) => {
@@ -370,7 +369,6 @@ class Products {
     selectColor(whiteBtn, this.productsColorWhite, "white");
     selectColor(purpleBtn, this.productsColorPurple, "purple");
     selectColor(blueBtn, this.productsColorBlue, "blue");
-    selectColor(grayBtn, this.productsColorGray, "gray");
     selectColor(blackBtn, this.productsColorBlack, "black");
 
     const selectManufacturer: selectElement = (element, array, text) => {
@@ -410,7 +408,6 @@ class Products {
     selectCameras(camera1, this.productsCameras1, "1");
     selectCameras(camera2, this.productsCameras2, "2");
     selectCameras(camera3, this.productsCameras3, "3");
-    selectCameras(camera4, this.productsCameras4, "4");
 
     return this.products;
   }
@@ -465,10 +462,6 @@ class Products {
       "active-checkbox"
     );
     activeBtnFilter(
-      document.getElementById("gray") as HTMLDivElement,
-      "active-checkbox"
-    );
-    activeBtnFilter(
       document.getElementById("black") as HTMLDivElement,
       "active-checkbox"
     );
@@ -497,10 +490,6 @@ class Products {
       document.getElementById("camera3") as HTMLDivElement,
       "active-icon"
     );
-    activeBtnFilter(
-      document.getElementById("camera4") as HTMLDivElement,
-      "active-icon"
-    );
   }
   outputMessageNotFound(): void {
     if (
@@ -526,7 +515,6 @@ class Products {
       const whiteBtn = document.getElementById("white") as HTMLDivElement;
       const purpleBtn = document.getElementById("purple") as HTMLDivElement;
       const blueBtn = document.getElementById("blue") as HTMLDivElement;
-      const grayBtn = document.getElementById("gray") as HTMLDivElement;
       const blackBtn = document.getElementById("black") as HTMLDivElement;
       const samsung = document.getElementById("samsung") as HTMLDivElement;
       const apple = document.getElementById("apple") as HTMLDivElement;
@@ -534,13 +522,11 @@ class Products {
       const camera1 = document.getElementById("camera1") as HTMLDivElement;
       const camera2 = document.getElementById("camera2") as HTMLDivElement;
       const camera3 = document.getElementById("camera3") as HTMLDivElement;
-      const camera4 = document.getElementById("camera4") as HTMLDivElement;
       const arrayFiltersCheckbox = [
         checkboxPupular,
         whiteBtn,
         purpleBtn,
         blueBtn,
-        grayBtn,
         blackBtn,
       ];
       const arrayFiltersIcon = [
@@ -550,7 +536,6 @@ class Products {
         camera1,
         camera2,
         camera3,
-        camera4,
       ];
       arrayFiltersCheckbox.forEach((element) =>
         element.classList.remove("active-checkbox")

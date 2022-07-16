@@ -28,7 +28,6 @@ class FilterValue {
   numberCameras(): void {
     this.filter.innerHTML += `<div class="filter-value__filter">Количество камер:
     <div class="filter-value__list">
-      <div id="camera4" class="favorite-item favorite-camera filter-value__number-cameras">4</div>
       <div id="camera3" class="favorite-item favorite-camera filter-value__number-cameras">3</div>
       <div id="camera2" class="favorite-item favorite-camera filter-value__number-cameras">2</div>
       <div id="camera1" class="favorite-item favorite-camera filter-value__number-cameras">1</div>
@@ -41,7 +40,6 @@ class FilterValue {
         <div id="white" class="favorite-item favorite-label filter-value__color_white"></div>
         <div id="purple" class="favorite-item favorite-label filter-value__color_purple"></div>
         <div id="blue" class="favorite-item favorite-label filter-value__color_blue"></div>
-        <div id="gray" class="favorite-item favorite-label filter-value__color_gray"></div>
         <div id="black" class="favorite-item favorite-label filter-value__color_black"></div>
       </div>
     </div>`;
