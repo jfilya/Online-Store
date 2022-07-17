@@ -1,4 +1,12 @@
 @import "../../../../mixin.scss";
+@keyframes showBlock {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .products {
   padding: 30px 0 30px 30px;
 }
@@ -19,6 +27,7 @@ h5 {
     overflow: hidden;
     position: relative;
     transition: 0.5s;
+    animation: showBlock 0.5s linear forwards;
     &::before {
       content: "🗸";
       background: cadetblue;
