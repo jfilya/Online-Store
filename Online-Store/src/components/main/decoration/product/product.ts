@@ -95,7 +95,10 @@ class Products {
         products.forEach((p) => {
           if ((element.parentNode as HTMLDivElement).id === p.id) {
             this.localArray.push(p.id);
-            localStorage.setItem("localArray", JSON.stringify(this.localArray));
+            localStorage.setItem(
+              "localArray",
+              JSON.stringify([...new Set(this.localArray)])
+            );
           }
         });
       }
