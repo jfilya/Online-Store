@@ -4,13 +4,13 @@ class FilterValue {
   constructor() {
     this.filter = document.createElement("div");
   }
-  innerFilter(): void {
+  public innerFilter(): void {
     (document.querySelector("aside") as HTMLElement).innerHTML = ``;
     (document.querySelector("aside") as HTMLElement).append(this.filter);
     this.filter.className = "filter-value";
     this.filter.innerHTML = `<h4>Фильтры</h4>`;
   }
-  manufacturer(): void {
+  public manufacturer(): void {
     this.filter.innerHTML += `<div class="filter-value__filter">Производитель:
       <div class="filter-value__list">
         <div class="favorite-icon filter-value__phone" id="samsung">
@@ -25,7 +25,7 @@ class FilterValue {
       </div>
     </div>`;
   }
-  numberCameras(): void {
+  public numberCameras(): void {
     this.filter.innerHTML += `<div class="filter-value__filter">Количество камер:
     <div class="filter-value__list">
       <div id="camera3" class="favorite-item favorite-camera filter-value__number-cameras">3</div>
@@ -34,7 +34,7 @@ class FilterValue {
     </div>
   </div>`;
   }
-  colorSort(): void {
+  public colorSort(): void {
     this.filter.innerHTML += `<div class="filter-value__filter">Цвет:
       <div class="filter-value__list">
         <div id="white" class="favorite-item favorite-label filter-value__color_white"></div>
@@ -44,12 +44,12 @@ class FilterValue {
       </div>
     </div>`;
   }
-  popular(): void {
+  public popular(): void {
     this.filter.innerHTML += `<div class="filter-value__filter">Только популярные:
         <div id="checkbox" class="favorite-item favorite-label"></div>
     </div>`;
   }
-  range(): void {
+  public range(): void {
     this.filter.innerHTML += `<div class="filter-value__filter filter-value__filter_slider">Количество:
       <div class="slider-value"></div>
       <div class="slider-value__range">
@@ -65,13 +65,13 @@ class FilterValue {
       </div>  
     </div>`;
   }
-  search(): void {
+  public search(): void {
     this.filter.innerHTML += `<div class="filter-value__filter_search">
       <label>Поиск:</label>
       <input placeholder="Введите наименование товара" type="search" class="search" id="search-text" value="">
     </div>`;
   }
-  sort(): void {
+  public sort(): void {
     this.filter.innerHTML += `<div class="filter-value__filter_search">
       <label>Сортировка:</label>
       <select class="search" id="search-ascending-descending">
@@ -82,7 +82,7 @@ class FilterValue {
       </select>
     </div>`;
   }
-  reset(): void {
+  public reset(): void {
     this.filter.innerHTML += `<div class="filter-value__filter_reset">
       <button id="reset-filters">Сброс фильтров</button>
       <button id="reset-settings">Сброс настроек</button>

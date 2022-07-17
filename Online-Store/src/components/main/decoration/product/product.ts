@@ -21,7 +21,7 @@ class Products {
     this.productsFilters = [];
     this.productsCameras = [];
   }
-  innerProduct(): void {
+  public innerProduct(): void {
     (
       document.querySelector("section") as HTMLElement
     ).innerHTML += `<h4>Товары</h4>`;
@@ -31,7 +31,7 @@ class Products {
     (document.querySelector("section") as HTMLElement).append(this.productItem);
     this.productItem.className = "product";
   }
-  buildProductitem(p: IProducts[]): void {
+  public buildProductitem(p: IProducts[]): void {
     (document.querySelector(".product") as HTMLElement).innerHTML = ``;
     for (const prod of p) {
       (
@@ -51,7 +51,7 @@ class Products {
     }
     this.addCountOfBasket();
   }
-  addCountOfBasket(): void {
+  private addCountOfBasket(): void {
     let count = +(
       document.querySelector(".header__basket-amount") as HTMLDivElement
     ).innerHTML;
@@ -104,7 +104,7 @@ class Products {
       });
     });
   }
-  rangeSlider(
+  public rangeSlider(
     sliderName: noUiSlider.target,
     x: number,
     y: number,
@@ -154,13 +154,13 @@ class Products {
       });
     }
   }
-  searchOninput(): void {
+  public searchOninput(): void {
     (document.getElementById("search-text") as HTMLInputElement).oninput =
       (): void => {
         this.searchBoxValue();
       };
   }
-  searchBoxValue(): void {
+  private searchBoxValue(): void {
     const val = (
       document.getElementById("search-text") as HTMLInputElement
     ).value
@@ -198,7 +198,7 @@ class Products {
       });
     }
   }
-  sortAscendingDescendingOnchange(): void {
+  public sortAscendingDescendingOnchange(): void {
     (
       document.getElementById(
         "search-ascending-descending"
@@ -207,7 +207,7 @@ class Products {
       this.sortAscendingDescending();
     };
   }
-  sortAscendingDescending(): void {
+  private sortAscendingDescending(): void {
     const elementProducts: HTMLDivElement = document.querySelector(
       ".product"
     ) as HTMLDivElement;
@@ -300,7 +300,7 @@ class Products {
       );
     }
   }
-  filterBtnAll(): IProducts[] {
+  private filterBtnAll(): IProducts[] {
     const checkboxPupular = document.getElementById(
       "checkbox"
     ) as HTMLDivElement;
@@ -525,7 +525,7 @@ class Products {
 
     return (this.products = this.productsFilters);
   }
-  filterBtnAllClick(): void {
+  public filterBtnAllClick(): void {
     const sliderValueStart = document.querySelector(
       ".slider-value-start"
     ) as HTMLDivElement;
@@ -605,7 +605,7 @@ class Products {
       "active-icon"
     );
   }
-  outputMessageNotFound(): void {
+  private outputMessageNotFound(): void {
     if (
       (document.querySelector(".product") as unknown as HTMLDivElement)
         .childNodes.length === 0
@@ -619,7 +619,7 @@ class Products {
       ).style.display = "none";
     }
   }
-  resetFilters(): void {
+  public resetFilters(): void {
     (
       document.getElementById("reset-filters") as HTMLDivElement
     ).addEventListener("click", () => {
@@ -636,14 +636,14 @@ class Products {
       const camera1 = document.getElementById("camera1") as HTMLDivElement;
       const camera2 = document.getElementById("camera2") as HTMLDivElement;
       const camera3 = document.getElementById("camera3") as HTMLDivElement;
-      const arrayFiltersCheckbox = [
+      const arrayFiltersCheckbox: HTMLDivElement[] = [
         checkboxPupular,
         whiteBtn,
         purpleBtn,
         blueBtn,
         blackBtn,
       ];
-      const arrayFiltersIcon = [
+      const arrayFiltersIcon: HTMLDivElement[] = [
         samsung,
         apple,
         xiaomi,

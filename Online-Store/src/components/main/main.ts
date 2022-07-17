@@ -2,11 +2,11 @@ import FilterValue from "./decoration/filters/filter-value";
 import Products from "./decoration/product/product";
 
 class Main {
-  public main: HTMLElement;
-  public asideValue: HTMLElement;
-  public sectionProducts: HTMLElement;
-  public filterValue: FilterValue;
-  public products: Products;
+  protected main: HTMLElement;
+  protected asideValue: HTMLElement;
+  protected sectionProducts: HTMLElement;
+  protected filterValue: FilterValue;
+  protected products: Products;
   constructor() {
     this.main = document.createElement("main");
     this.asideValue = document.createElement("aside");
@@ -14,17 +14,17 @@ class Main {
     this.filterValue = new FilterValue();
     this.products = new Products();
   }
-  appendBody(): void {
+  public appendBody(): void {
     document.body.append(this.main);
     this.main.className = "container";
   }
-  appendMain(): void {
+  public appendMain(): void {
     this.main.append(this.asideValue);
     this.main.append(this.sectionProducts);
     this.asideValue.className = "filter";
     this.sectionProducts.className = "products";
   }
-  appendAsideValue(): void {
+  public appendAsideValue(): void {
     this.filterValue.innerFilter();
     this.filterValue.manufacturer();
     this.filterValue.numberCameras();
@@ -34,14 +34,14 @@ class Main {
     this.filterValue.search();
     this.filterValue.sort();
     this.filterValue.reset();
-    document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("DOMContentLoaded", (): void => {
       (document.querySelector(".search") as HTMLInputElement).focus();
     });
   }
-  appendSectionProducts(): void {
+  public appendSectionProducts(): void {
     this.products.innerProduct();
   }
-  activeSectionProducts(): void {
+  public activeSectionProducts(): void {
     this.products.searchOninput();
     this.products.sortAscendingDescendingOnchange();
     this.products.filterBtnAllClick();
