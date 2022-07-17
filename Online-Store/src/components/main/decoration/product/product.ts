@@ -83,6 +83,12 @@ class Products {
         (element.parentNode as HTMLDivElement).classList.remove(
           "active-before"
         );
+        products.forEach((p) => {
+          if ((element.parentNode as HTMLDivElement).id === p.id) {
+            this.localArray = this.localArray.filter((f) => f !== p.id);
+            localStorage.setItem("localArray", JSON.stringify(this.localArray));
+          }
+        });
       }
       if (element.innerHTML == "Удалить") {
         (element.parentNode as HTMLDivElement).classList.add("active-before");
@@ -100,6 +106,11 @@ class Products {
             products.forEach((p) => {
               if ((element.parentNode as HTMLDivElement).id === p.id) {
                 p.btn = "Удалить";
+                this.localArray.push(p.id);
+                localStorage.setItem(
+                  "localArray",
+                  JSON.stringify(this.localArray)
+                );
               }
             });
             element.innerHTML = "Удалить";
@@ -117,7 +128,6 @@ class Products {
             if ((element.parentNode as HTMLDivElement).id === p.id) {
               p.btn = "Добавить в корзину";
               this.localArray = this.localArray.filter((f) => f !== p.id);
-              console.log(this.localArray);
               localStorage.setItem(
                 "localArray",
                 JSON.stringify(this.localArray)
