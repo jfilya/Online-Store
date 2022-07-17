@@ -184,7 +184,7 @@ class Products {
         ".slider-year-end"
       ) as HTMLDivElement;
       sliderName.noUiSlider.on("update", () => {
-        this.products = this.filterBtnAll();
+        this.filterBtnAll();
         this.buildProductitem(
           this.products.filter(
             (p: IProducts) =>
@@ -382,9 +382,11 @@ class Products {
 
     if (checkboxPupular.classList.contains("active-checkbox")) {
       this.productsPopular = this.workArray.filter((p) => p.popular[1]);
+      localStorage.setItem("Popular", "popular");
     }
     if (!checkboxPupular.classList.contains("active-checkbox")) {
       this.productsPopular = this.workArray;
+      localStorage.removeItem("Popular");
     }
     if (this.productsPopular.length === 0) {
       this.productsPopular = this.workArray;
@@ -398,11 +400,13 @@ class Products {
         this.productsColors.push(
           ...this.workArray.filter((p) => p.color[1] === colorWhite)
         );
+        localStorage.setItem("white", "white");
       }
       if (!whiteBtn.classList.contains("active-checkbox")) {
         this.productsColors = this.productsColors.filter(
           (p) => p.color[1] !== colorWhite
         );
+        localStorage.removeItem("white");
       }
 
       if (purpleBtn.classList.contains("active-checkbox")) {
@@ -412,11 +416,13 @@ class Products {
         this.productsColors.push(
           ...this.workArray.filter((p) => p.color[1] === colorPurple)
         );
+        localStorage.setItem("purple", "purple");
       }
       if (!purpleBtn.classList.contains("active-checkbox")) {
         this.productsColors = this.productsColors.filter(
           (p) => p.color[1] !== colorPurple
         );
+        localStorage.removeItem("purple");
       }
 
       if (blueBtn.classList.contains("active-checkbox")) {
@@ -426,11 +432,13 @@ class Products {
         this.productsColors.push(
           ...this.workArray.filter((p) => p.color[1] === colorBlue)
         );
+        localStorage.setItem("blue", "blue");
       }
       if (!blueBtn.classList.contains("active-checkbox")) {
         this.productsColors = this.productsColors.filter(
           (p) => p.color[1] !== colorBlue
         );
+        localStorage.removeItem("blue");
       }
 
       if (blackBtn.classList.contains("active-checkbox")) {
@@ -440,11 +448,13 @@ class Products {
         this.productsColors.push(
           ...this.workArray.filter((p) => p.color[1] === colorBlack)
         );
+        localStorage.setItem("black", "black");
       }
       if (!blackBtn.classList.contains("active-checkbox")) {
         this.productsColors = this.productsColors.filter(
           (p) => p.color[1] !== colorBlack
         );
+        localStorage.removeItem("black");
       }
       if (this.productsColors.length === 0) {
         this.productsColors = this.workArray;
@@ -460,11 +470,13 @@ class Products {
         this.productsManufacturer.push(
           ...this.workArray.filter((p) => p.manufacturer === manufacturerXiaomi)
         );
+        localStorage.setItem("xiaomi", "xiaomi");
       }
       if (!xiaomi.classList.contains("active-icon")) {
         this.productsManufacturer = this.productsManufacturer.filter(
           (p) => p.manufacturer !== manufacturerXiaomi
         );
+        localStorage.removeItem("xiaomi");
       }
       if (apple.classList.contains("active-icon")) {
         this.productsManufacturer = this.productsManufacturer.filter(
@@ -473,11 +485,13 @@ class Products {
         this.productsManufacturer.push(
           ...this.workArray.filter((p) => p.manufacturer === manufacturerApple)
         );
+        localStorage.setItem("apple", "apple");
       }
       if (!apple.classList.contains("active-icon")) {
         this.productsManufacturer = this.productsManufacturer.filter(
           (p) => p.manufacturer !== manufacturerApple
         );
+        localStorage.removeItem("apple");
       }
       if (samsung.classList.contains("active-icon")) {
         this.productsManufacturer = this.productsManufacturer.filter(
@@ -488,11 +502,13 @@ class Products {
             (p) => p.manufacturer === manufacturerSamsung
           )
         );
+        localStorage.setItem("samsung", "samsung");
       }
       if (!samsung.classList.contains("active-icon")) {
         this.productsManufacturer = this.productsManufacturer.filter(
           (p) => p.manufacturer !== manufacturerSamsung
         );
+        localStorage.removeItem("samsung");
       }
       if (this.productsManufacturer.length === 0) {
         this.productsManufacturer = this.workArray;
@@ -510,11 +526,13 @@ class Products {
             (p) => p.numberOfCameras === numberOfCameras1
           )
         );
+        localStorage.setItem("camera1", "1");
       }
       if (!camera1.classList.contains("active-icon")) {
         this.productsCameras = this.productsCameras.filter(
           (p) => p.numberOfCameras !== numberOfCameras1
         );
+        localStorage.removeItem("camera1");
       }
       if (camera2.classList.contains("active-icon")) {
         this.productsCameras = this.productsCameras.filter(
@@ -525,11 +543,13 @@ class Products {
             (p) => p.numberOfCameras === numberOfCameras2
           )
         );
+        localStorage.setItem("camera2", "2");
       }
       if (!camera2.classList.contains("active-icon")) {
         this.productsCameras = this.productsCameras.filter(
           (p) => p.numberOfCameras !== numberOfCameras2
         );
+        localStorage.removeItem("camera2");
       }
       if (camera3.classList.contains("active-icon")) {
         this.productsCameras = this.productsCameras.filter(
@@ -540,11 +560,13 @@ class Products {
             (p) => p.numberOfCameras === numberOfCameras3
           )
         );
+        localStorage.setItem("camera3", "3");
       }
       if (!camera3.classList.contains("active-icon")) {
         this.productsCameras = this.productsCameras.filter(
           (p) => p.numberOfCameras !== numberOfCameras3
         );
+        localStorage.removeItem("camera3");
       }
       if (this.productsCameras.length === 0) {
         this.productsCameras = this.workArray;
@@ -609,6 +631,7 @@ class Products {
       document.getElementById("checkbox") as HTMLDivElement,
       "active-checkbox"
     );
+
     activeBtnFilter(
       document.getElementById("white") as HTMLDivElement,
       "active-checkbox"

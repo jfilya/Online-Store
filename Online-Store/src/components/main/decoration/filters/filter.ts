@@ -88,6 +88,63 @@ class FilterValue {
       <button id="reset-settings">Сброс настроек</button>
     </div>`;
   }
+  public localStorageAllFiltersBtn(): void {
+    if (localStorage.getItem("Popular") === "popular") {
+      (document.getElementById("checkbox") as HTMLDivElement).classList.add(
+        "active-checkbox"
+      );
+    }
+    if (localStorage.getItem("white") === "white") {
+      (document.getElementById("white") as HTMLDivElement).classList.add(
+        "active-checkbox"
+      );
+    }
+    if (localStorage.getItem("purple") === "purple") {
+      (document.getElementById("purple") as HTMLDivElement).classList.add(
+        "active-checkbox"
+      );
+    }
+    if (localStorage.getItem("blue") === "blue") {
+      (document.getElementById("blue") as HTMLDivElement).classList.add(
+        "active-checkbox"
+      );
+    }
+    if (localStorage.getItem("black") === "black") {
+      (document.getElementById("black") as HTMLDivElement).classList.add(
+        "active-checkbox"
+      );
+    }
+    if (localStorage.getItem("xiaomi") === "xiaomi") {
+      (document.getElementById("xiaomi") as HTMLDivElement).classList.add(
+        "active-icon"
+      );
+    }
+    if (localStorage.getItem("apple") === "apple") {
+      (document.getElementById("apple") as HTMLDivElement).classList.add(
+        "active-icon"
+      );
+    }
+    if (localStorage.getItem("samsung") === "samsung") {
+      (document.getElementById("samsung") as HTMLDivElement).classList.add(
+        "active-icon"
+      );
+    }
+    if (localStorage.getItem("camera1") === "1") {
+      (document.getElementById("camera1") as HTMLDivElement).classList.add(
+        "active-icon"
+      );
+    }
+    if (localStorage.getItem("camera2") === "2") {
+      (document.getElementById("camera2") as HTMLDivElement).classList.add(
+        "active-icon"
+      );
+    }
+    if (localStorage.getItem("camera3") === "3") {
+      (document.getElementById("camera3") as HTMLDivElement).classList.add(
+        "active-icon"
+      );
+    }
+  }
 }
 
 export default FilterValue;

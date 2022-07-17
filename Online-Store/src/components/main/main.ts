@@ -34,6 +34,7 @@ class Main {
     this.filterValue.search();
     this.filterValue.sort();
     this.filterValue.reset();
+    this.filterValue.localStorageAllFiltersBtn();
     document.addEventListener("DOMContentLoaded", (): void => {
       (document.querySelector(".search") as HTMLInputElement).focus();
     });
