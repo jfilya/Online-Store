@@ -150,56 +150,112 @@ class Products {
       });
     });
   }
-  public rangeSlider(
-    sliderName: noUiSlider.target,
-    x: number,
-    y: number,
-    inputs: HTMLDivElement[]
-  ): void {
-    if (sliderName) {
-      noUiSlider.create(sliderName, {
-        start: [x, y],
-        step: 1,
-        connect: true,
-        range: {
-          min: [x],
-          max: [y],
-        },
-      });
-      sliderName.noUiSlider.on(
-        "update",
-        (values, handle: number): string =>
-          (inputs[handle].innerText = `${Math.round(+values[handle])}`)
-      );
-      const sliderValueStart = document.querySelector(
-        ".slider-value-start"
-      ) as HTMLDivElement;
-      const sliderValueEnd = document.querySelector(
-        ".slider-value-end"
-      ) as HTMLDivElement;
-      const sliderYearStart = document.querySelector(
-        ".slider-year-start"
-      ) as HTMLDivElement;
-      const sliderYearEnd = document.querySelector(
-        ".slider-year-end"
-      ) as HTMLDivElement;
-      sliderName.noUiSlider.on("update", () => {
-        this.filterBtnAll();
-        this.buildProductitem(
-          this.products.filter(
-            (p: IProducts) =>
-              p.amount >= +sliderValueStart.innerText &&
-              p.amount <= +sliderValueEnd.innerText &&
-              p.year >= +sliderYearStart.innerText &&
-              p.year <= +sliderYearEnd.innerText
-          )
-        );
-        this.searchBoxValue();
-        this.outputMessageNotFound();
-        this.sortAscendingDescending();
-      });
+  public rangeSlider(): void {
+    let xStartValue, yEndValue, xStartYear, yEndYear;
+    if (!localStorage.getItem("sliderValue")) {
+      xStartValue = 1;
+      yEndValue = 10;
     }
+    if (localStorage.getItem("sliderValue")) {
+      xStartValue = +(localStorage.getItem("sliderValue") as string).split(
+        ","
+      )[0];
+      yEndValue = +(localStorage.getItem("sliderValue") as string).split(
+        ","
+      )[1];
+    }
+    if (!localStorage.getItem("sliderYear")) {
+      xStartYear = 2017;
+      yEndYear = 2022;
+    }
+    if (localStorage.getItem("sliderYear")) {
+      xStartYear = +(localStorage.getItem("sliderYear") as string).split(
+        ","
+      )[0];
+      yEndYear = +(localStorage.getItem("sliderYear") as string).split(",")[1];
+    }
+    const rangeBuildSlider = (
+      sliderName: noUiSlider.target,
+      xStart: number,
+      yEnd: number,
+      xMin: number,
+      yMax: number,
+      inputs: HTMLDivElement[]
+    ): void => {
+      if (sliderName) {
+        noUiSlider.create(sliderName, {
+          start: [xStart, yEnd],
+          step: 1,
+          connect: true,
+          range: {
+            min: [xMin],
+            max: [yMax],
+          },
+        });
+        sliderName.noUiSlider.on("update", (values, handle: number): void => {
+          inputs[handle].innerText = `${Math.round(+values[handle])}`;
+        });
+        const sliderValueStart = document.querySelector(
+          ".slider-value-start"
+        ) as HTMLDivElement;
+        const sliderValueEnd = document.querySelector(
+          ".slider-value-end"
+        ) as HTMLDivElement;
+        const sliderYearStart = document.querySelector(
+          ".slider-year-start"
+        ) as HTMLDivElement;
+        const sliderYearEnd = document.querySelector(
+          ".slider-year-end"
+        ) as HTMLDivElement;
+        sliderName.noUiSlider.on("update", () => {
+          this.filterBtnAll();
+          this.buildProductitem(
+            this.products.filter(
+              (p: IProducts) =>
+                p.amount >= +sliderValueStart.innerText &&
+                p.amount <= +sliderValueEnd.innerText &&
+                p.year >= +sliderYearStart.innerText &&
+                p.year <= +sliderYearEnd.innerText
+            )
+          );
+          localStorage.setItem(
+            "sliderYear",
+            `${sliderYearStart.innerText + "," + sliderYearEnd.innerText}`
+          );
+          localStorage.setItem(
+            "sliderValue",
+            `${sliderValueStart.innerText + "," + sliderValueEnd.innerText}`
+          );
+          this.searchBoxValue();
+          this.outputMessageNotFound();
+          this.sortAscendingDescending();
+        });
+      }
+    };
+    rangeBuildSlider(
+      document.querySelector(".slider-value") as noUiSlider.target,
+      xStartValue as number,
+      yEndValue as number,
+      1,
+      10,
+      [
+        document.querySelector(".slider-value-start") as HTMLDivElement,
+        document.querySelector(".slider-value-end") as HTMLDivElement,
+      ]
+    );
+    rangeBuildSlider(
+      document.querySelector(".slider-year") as noUiSlider.target,
+      xStartYear as number,
+      yEndYear as number,
+      2017,
+      2022,
+      [
+        document.querySelector(".slider-year-start") as HTMLDivElement,
+        document.querySelector(".slider-year-end") as HTMLDivElement,
+      ]
+    );
   }
+
   public searchOninput(): void {
     (document.getElementById("search-text") as HTMLInputElement).oninput =
       (): void => {
@@ -756,26 +812,3 @@ class Products {
 }
 
 export default Products;
-
-function rangeBuild(): void {
-  new Products().rangeSlider(
-    document.querySelector(".slider-value") as noUiSlider.target,
-    1,
-    10,
-    [
-      document.querySelector(".slider-value-start") as HTMLDivElement,
-      document.querySelector(".slider-value-end") as HTMLDivElement,
-    ]
-  );
-  new Products().rangeSlider(
-    document.querySelector(".slider-year") as noUiSlider.target,
-    2017,
-    2022,
-    [
-      document.querySelector(".slider-year-start") as HTMLDivElement,
-      document.querySelector(".slider-year-end") as HTMLDivElement,
-    ]
-  );
-}
-
-export { rangeBuild, noUiSlider };

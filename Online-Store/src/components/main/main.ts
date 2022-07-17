@@ -43,6 +43,7 @@ class Main {
     this.products.innerProduct();
   }
   public activeSectionProducts(): void {
+    this.products.rangeSlider();
     this.products.searchOninput();
     this.products.sortAscendingDescendingOnchange();
     this.products.filterBtnAllClick();
