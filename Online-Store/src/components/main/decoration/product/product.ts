@@ -6,36 +6,20 @@ class Products {
   public productItem: HTMLDivElement;
   public products: IProducts[];
   private workArray: IProducts[];
-  private productsNotPopular: IProducts[];
-  private productsColorWhite: IProducts[];
-  private productsColorPurple: IProducts[];
-  private productsColorBlue: IProducts[];
-  private productsColorGray: IProducts[];
-  private productsColorBlack: IProducts[];
-  private productsSamsung: IProducts[];
-  private productsApple: IProducts[];
-  private productsXiaomi: IProducts[];
-  private productsCameras1: IProducts[];
-  private productsCameras2: IProducts[];
-  private productsCameras3: IProducts[];
-  private productsCameras4: IProducts[];
+  private productsPopular: IProducts[];
+  private productsManufacturer: IProducts[];
+  private productsColors: IProducts[];
+  private productsFilters: IProducts[];
+  private productsCameras: IProducts[];
   constructor() {
     this.products = products;
     this.workArray = products;
     this.productItem = document.createElement("div");
-    this.productsNotPopular = [];
-    this.productsColorWhite = [];
-    this.productsColorPurple = [];
-    this.productsColorBlue = [];
-    this.productsColorGray = [];
-    this.productsColorBlack = [];
-    this.productsSamsung = [];
-    this.productsApple = [];
-    this.productsXiaomi = [];
-    this.productsCameras1 = [];
-    this.productsCameras2 = [];
-    this.productsCameras3 = [];
-    this.productsCameras4 = [];
+    this.productsPopular = [];
+    this.productsManufacturer = [];
+    this.productsColors = [];
+    this.productsFilters = [];
+    this.productsCameras = [];
   }
   innerProduct(): void {
     (
@@ -317,12 +301,6 @@ class Products {
     }
   }
   filterBtnAll(): IProducts[] {
-    type selectElement = (
-      element: HTMLDivElement,
-      array: IProducts[],
-      text: string
-    ) => void;
-
     const checkboxPupular = document.getElementById(
       "checkbox"
     ) as HTMLDivElement;
@@ -341,75 +319,187 @@ class Products {
     const camera3 = document.getElementById("camera3") as HTMLDivElement;
 
     if (checkboxPupular.classList.contains("active-checkbox")) {
-      this.products.forEach((p) => {
-        if (p.popular[0] === "нет") {
-          this.productsNotPopular.push(p);
-        }
-      });
-      this.products = this.products.filter((p) => p.popular[1]);
+      this.productsPopular = this.workArray.filter((p) => p.popular[1]);
     }
     if (!checkboxPupular.classList.contains("active-checkbox")) {
-      this.products.push(...this.productsNotPopular);
-      this.productsNotPopular.splice(0, this.productsNotPopular.length);
+      this.productsPopular = this.workArray;
     }
-    const selectColor: selectElement = (element, array, text) => {
-      if (element.classList.contains("active-checkbox")) {
-        this.products.forEach((p) => {
-          if (p.color[1] !== text) {
-            array.push(p);
-          }
-        });
-        this.products = this.products.filter((p) => p.color[1] === text);
-      }
-      if (!element.classList.contains("active-checkbox")) {
-        this.products.push(...array);
-        array.splice(0, array.length);
-      }
-    };
-    selectColor(whiteBtn, this.productsColorWhite, "white");
-    selectColor(purpleBtn, this.productsColorPurple, "purple");
-    selectColor(blueBtn, this.productsColorBlue, "blue");
-    selectColor(blackBtn, this.productsColorBlack, "black");
+    if (this.productsPopular.length === 0) {
+      this.productsPopular = this.workArray;
+    }
 
-    const selectManufacturer: selectElement = (element, array, text) => {
-      if (element.classList.contains("active-icon")) {
-        this.products.forEach((p) => {
-          if (p.manufacturer !== text) {
-            array.push(p);
-          }
-        });
-        this.products = this.products.filter((p) => p.manufacturer === text);
-      }
-      if (!element.classList.contains("active-icon")) {
-        this.products.push(...array);
-        array.splice(0, array.length);
-      }
-    };
-    selectManufacturer(samsung, this.productsSamsung, "samsung");
-    selectManufacturer(apple, this.productsApple, "apple");
-    selectManufacturer(xiaomi, this.productsXiaomi, "xiaomi");
-
-    const selectCameras: selectElement = (element, array, text) => {
-      if (element.classList.contains("active-icon")) {
-        this.products.forEach((p) => {
-          if (p.numberOfCameras !== +text) {
-            array.push(p);
-          }
-        });
-        this.products = this.products.filter(
-          (p) => p.numberOfCameras === +text
+    const selectColor = (): void => {
+      if (whiteBtn.classList.contains("active-checkbox")) {
+        this.productsColors = this.productsColors.filter(
+          (p) => p.color[1] !== "white"
+        );
+        this.productsColors.push(
+          ...this.workArray.filter((p) => p.color[1] === "white")
         );
       }
-      if (!element.classList.contains("active-icon")) {
-        this.products.push(...array);
-        array.splice(0, array.length);
+      if (!whiteBtn.classList.contains("active-checkbox")) {
+        this.productsColors = this.productsColors.filter(
+          (p) => p.color[1] !== "white"
+        );
+      }
+
+      if (purpleBtn.classList.contains("active-checkbox")) {
+        this.productsColors = this.productsColors.filter(
+          (p) => p.color[1] !== "purple"
+        );
+        this.productsColors.push(
+          ...this.workArray.filter((p) => p.color[1] === "purple")
+        );
+      }
+      if (!purpleBtn.classList.contains("active-checkbox")) {
+        this.productsColors = this.productsColors.filter(
+          (p) => p.color[1] !== "purple"
+        );
+      }
+
+      if (blueBtn.classList.contains("active-checkbox")) {
+        this.productsColors = this.productsColors.filter(
+          (p) => p.color[1] !== "blue"
+        );
+        this.productsColors.push(
+          ...this.workArray.filter((p) => p.color[1] === "blue")
+        );
+      }
+      if (!blueBtn.classList.contains("active-checkbox")) {
+        this.productsColors = this.productsColors.filter(
+          (p) => p.color[1] !== "blue"
+        );
+      }
+
+      if (blackBtn.classList.contains("active-checkbox")) {
+        this.productsColors = this.productsColors.filter(
+          (p) => p.color[1] !== "black"
+        );
+        this.productsColors.push(
+          ...this.workArray.filter((p) => p.color[1] === "black")
+        );
+      }
+      if (!blackBtn.classList.contains("active-checkbox")) {
+        this.productsColors = this.productsColors.filter(
+          (p) => p.color[1] !== "black"
+        );
+      }
+      if (this.productsColors.length === 0) {
+        this.productsColors = this.workArray;
       }
     };
-    selectCameras(camera1, this.productsCameras1, "1");
-    selectCameras(camera2, this.productsCameras2, "2");
-    selectCameras(camera3, this.productsCameras3, "3");
+    selectColor();
 
-    return this.products;
+    const selectManufacturer = (): void => {
+      if (xiaomi.classList.contains("active-icon")) {
+        this.productsManufacturer = this.productsManufacturer.filter(
+          (p) => p.manufacturer !== "xiaomi"
+        );
+        this.productsManufacturer.push(
+          ...this.workArray.filter((p) => p.manufacturer === "xiaomi")
+        );
+      }
+      if (!xiaomi.classList.contains("active-icon")) {
+        this.productsManufacturer = this.productsManufacturer.filter(
+          (p) => p.manufacturer !== "xiaomi"
+        );
+      }
+      if (apple.classList.contains("active-icon")) {
+        this.productsManufacturer = this.productsManufacturer.filter(
+          (p) => p.manufacturer !== "apple"
+        );
+        this.productsManufacturer.push(
+          ...this.workArray.filter((p) => p.manufacturer === "apple")
+        );
+      }
+      if (!apple.classList.contains("active-icon")) {
+        this.productsManufacturer = this.productsManufacturer.filter(
+          (p) => p.manufacturer !== "apple"
+        );
+      }
+      if (samsung.classList.contains("active-icon")) {
+        this.productsManufacturer = this.productsManufacturer.filter(
+          (p) => p.manufacturer !== "samsung"
+        );
+        this.productsManufacturer.push(
+          ...this.workArray.filter((p) => p.manufacturer === "samsung")
+        );
+      }
+      if (!samsung.classList.contains("active-icon")) {
+        this.productsManufacturer = this.productsManufacturer.filter(
+          (p) => p.manufacturer !== "samsung"
+        );
+      }
+      if (this.productsManufacturer.length === 0) {
+        this.productsManufacturer = this.workArray;
+      }
+    };
+    selectManufacturer();
+
+    const selectCameras = (): void => {
+      if (camera1.classList.contains("active-icon")) {
+        this.productsCameras = this.productsCameras.filter(
+          (p) => p.numberOfCameras !== 1
+        );
+        this.productsCameras.push(
+          ...this.workArray.filter((p) => p.numberOfCameras === 1)
+        );
+      }
+      if (!camera1.classList.contains("active-icon")) {
+        this.productsCameras = this.productsCameras.filter(
+          (p) => p.numberOfCameras !== 1
+        );
+      }
+      if (camera2.classList.contains("active-icon")) {
+        this.productsCameras = this.productsCameras.filter(
+          (p) => p.numberOfCameras !== 2
+        );
+        this.productsCameras.push(
+          ...this.workArray.filter((p) => p.numberOfCameras === 2)
+        );
+      }
+      if (!camera2.classList.contains("active-icon")) {
+        this.productsCameras = this.productsCameras.filter(
+          (p) => p.numberOfCameras !== 2
+        );
+      }
+      if (camera3.classList.contains("active-icon")) {
+        this.productsCameras = this.productsCameras.filter(
+          (p) => p.numberOfCameras !== 3
+        );
+        this.productsCameras.push(
+          ...this.workArray.filter((p) => p.numberOfCameras === 3)
+        );
+      }
+      if (!camera3.classList.contains("active-icon")) {
+        this.productsCameras = this.productsCameras.filter(
+          (p) => p.numberOfCameras !== 3
+        );
+      }
+      if (this.productsCameras.length === 0) {
+        this.productsCameras = this.workArray;
+      }
+    };
+    selectCameras();
+
+    this.productsFilters.splice(0, this.productsFilters.length);
+    this.productsCameras.forEach((camera) => {
+      this.productsManufacturer.forEach((m) => {
+        this.productsPopular.forEach((p) => {
+          this.productsColors.forEach((color) => {
+            if (
+              camera.id === m.id &&
+              camera.id === p.id &&
+              camera.id === color.id
+            ) {
+              this.productsFilters.push(color);
+            }
+          });
+        });
+      });
+    }) as unknown as IProducts[];
+
+    return (this.products = this.productsFilters);
   }
   filterBtnAllClick(): void {
     const sliderValueStart = document.querySelector(
