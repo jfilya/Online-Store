@@ -46,6 +46,7 @@ class Main {
     this.products.sortAscendingDescendingOnchange();
     this.products.filterBtnAllClick();
     this.products.resetFilters();
+    this.products.localStorageFunction();
   }
 }
 

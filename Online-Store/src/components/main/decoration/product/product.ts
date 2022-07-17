@@ -621,7 +621,7 @@ class Products {
   }
   public resetFilters(): void {
     (
-      document.getElementById("reset-filters") as HTMLDivElement
+      document.getElementById("reset-filters") as HTMLButtonElement
     ).addEventListener("click", () => {
       const checkboxPupular = document.getElementById(
         "checkbox"
@@ -674,6 +674,14 @@ class Products {
         document.querySelectorAll("option") as unknown as HTMLOptionElement[]
       )[0].selected = true;
       this.sortAscendingDescending();
+    });
+  }
+  public localStorageFunction(): void {
+    (
+      document.getElementById("reset-settings") as HTMLButtonElement
+    ).addEventListener("click", (): void => {
+      localStorage.clear();
+      console.log("localStorage.clear()");
     });
   }
 }
