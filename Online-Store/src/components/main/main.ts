@@ -1,17 +1,17 @@
-import FilterValue from "./decoration/filters/filter-value";
+import Filter from "./decoration/filters/filter";
 import Products from "./decoration/product/product";
 
 class Main {
   protected main: HTMLElement;
   protected asideValue: HTMLElement;
   protected sectionProducts: HTMLElement;
-  protected filterValue: FilterValue;
+  protected filterValue: Filter;
   protected products: Products;
   constructor() {
     this.main = document.createElement("main");
     this.asideValue = document.createElement("aside");
     this.sectionProducts = document.createElement("section");
-    this.filterValue = new FilterValue();
+    this.filterValue = new Filter();
     this.products = new Products();
   }
   public appendBody(): void {
