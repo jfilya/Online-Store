@@ -11,6 +11,7 @@ class Products {
   private productsColors: IProducts[];
   private productsFilters: IProducts[];
   private productsCameras: IProducts[];
+  private localArray: string[];
   constructor() {
     this.products = products;
     this.workArray = products;
@@ -20,6 +21,7 @@ class Products {
     this.productsColors = [];
     this.productsFilters = [];
     this.productsCameras = [];
+    this.localArray = [];
   }
   public innerProduct(): void {
     (
@@ -52,9 +54,26 @@ class Products {
     this.addCountOfBasket();
   }
   private addCountOfBasket(): void {
-    let count = +(
-      document.querySelector(".header__basket-amount") as HTMLDivElement
-    ).innerHTML;
+    let count: number;
+    if (localStorage.getItem("count") !== "0") {
+      count = +(localStorage.getItem("count") as string);
+      (
+        document.querySelector(".header__basket-amount") as HTMLDivElement
+      ).innerHTML = String(count);
+    } else
+      count = +(
+        document.querySelector(".header__basket-amount") as HTMLDivElement
+      ).innerHTML;
+    const array = JSON.parse(localStorage.getItem("localArray") as string) as {
+      [key: string]: string;
+    };
+    products.forEach((p) => {
+      for (const a in array) {
+        if (array[a] === p.id) {
+          p.btn = "Удалить";
+        }
+      }
+    });
     (
       document.querySelectorAll(
         ".product__item-btn"
@@ -67,12 +86,18 @@ class Products {
       }
       if (element.innerHTML == "Удалить") {
         (element.parentNode as HTMLDivElement).classList.add("active-before");
+        products.forEach((p) => {
+          if ((element.parentNode as HTMLDivElement).id === p.id) {
+            this.localArray.push(p.id);
+            localStorage.setItem("localArray", JSON.stringify(this.localArray));
+          }
+        });
       }
       element.addEventListener("click", () => {
         if (element.innerHTML == "Добавить в корзину") {
           if (count == 20) alert("Извините, все слоты заполнены");
           if (count < 20) {
-            this.products.forEach((p) => {
+            products.forEach((p) => {
               if ((element.parentNode as HTMLDivElement).id === p.id) {
                 p.btn = "Удалить";
               }
@@ -82,14 +107,21 @@ class Products {
               "active-before"
             );
             count += 1;
+            localStorage.setItem("count", `${count}`);
             (
               document.querySelector(".header__basket-amount") as HTMLDivElement
             ).innerHTML = `${count}`;
           }
         } else if (element.innerHTML == "Удалить") {
-          this.products.forEach((p) => {
+          products.forEach((p) => {
             if ((element.parentNode as HTMLDivElement).id === p.id) {
               p.btn = "Добавить в корзину";
+              this.localArray = this.localArray.filter((f) => f !== p.id);
+              console.log(this.localArray);
+              localStorage.setItem(
+                "localArray",
+                JSON.stringify(this.localArray)
+              );
             }
           });
           element.innerHTML = "Добавить в корзину";
@@ -97,6 +129,7 @@ class Products {
             "active-before"
           );
           count -= 1;
+          localStorage.setItem("count", `${count}`);
           (
             document.querySelector(".header__basket-amount") as HTMLDivElement
           ).innerHTML = `${count}`;
@@ -681,7 +714,7 @@ class Products {
       document.getElementById("reset-settings") as HTMLButtonElement
     ).addEventListener("click", (): void => {
       localStorage.clear();
-      console.log("localStorage.clear()");
+      location.reload();
     });
   }
 }
