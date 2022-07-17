@@ -310,13 +310,29 @@ class Products {
     const blueBtn = document.getElementById("blue") as HTMLDivElement;
     const blackBtn = document.getElementById("black") as HTMLDivElement;
 
+    type Color = "white" | "purple" | "blue" | "black";
+    const colorWhite: Color = "white";
+    const colorPurple: Color = "purple";
+    const colorBlue: Color = "blue";
+    const colorBlack: Color = "black";
+
     const samsung = document.getElementById("samsung") as HTMLDivElement;
     const apple = document.getElementById("apple") as HTMLDivElement;
     const xiaomi = document.getElementById("xiaomi") as HTMLDivElement;
 
+    type Manufacturer = "xiaomi" | "apple" | "samsung";
+    const manufacturerXiaomi: Manufacturer = "xiaomi";
+    const manufacturerApple: Manufacturer = "apple";
+    const manufacturerSamsung: Manufacturer = "samsung";
+
     const camera1 = document.getElementById("camera1") as HTMLDivElement;
     const camera2 = document.getElementById("camera2") as HTMLDivElement;
     const camera3 = document.getElementById("camera3") as HTMLDivElement;
+
+    type numberOfCameras = 1 | 2 | 3;
+    const numberOfCameras1: numberOfCameras = 1;
+    const numberOfCameras2: numberOfCameras = 2;
+    const numberOfCameras3: numberOfCameras = 3;
 
     if (checkboxPupular.classList.contains("active-checkbox")) {
       this.productsPopular = this.workArray.filter((p) => p.popular[1]);
@@ -331,57 +347,57 @@ class Products {
     const selectColor = (): void => {
       if (whiteBtn.classList.contains("active-checkbox")) {
         this.productsColors = this.productsColors.filter(
-          (p) => p.color[1] !== "white"
+          (p) => p.color[1] !== colorWhite
         );
         this.productsColors.push(
-          ...this.workArray.filter((p) => p.color[1] === "white")
+          ...this.workArray.filter((p) => p.color[1] === colorWhite)
         );
       }
       if (!whiteBtn.classList.contains("active-checkbox")) {
         this.productsColors = this.productsColors.filter(
-          (p) => p.color[1] !== "white"
+          (p) => p.color[1] !== colorWhite
         );
       }
 
       if (purpleBtn.classList.contains("active-checkbox")) {
         this.productsColors = this.productsColors.filter(
-          (p) => p.color[1] !== "purple"
+          (p) => p.color[1] !== colorPurple
         );
         this.productsColors.push(
-          ...this.workArray.filter((p) => p.color[1] === "purple")
+          ...this.workArray.filter((p) => p.color[1] === colorPurple)
         );
       }
       if (!purpleBtn.classList.contains("active-checkbox")) {
         this.productsColors = this.productsColors.filter(
-          (p) => p.color[1] !== "purple"
+          (p) => p.color[1] !== colorPurple
         );
       }
 
       if (blueBtn.classList.contains("active-checkbox")) {
         this.productsColors = this.productsColors.filter(
-          (p) => p.color[1] !== "blue"
+          (p) => p.color[1] !== colorBlue
         );
         this.productsColors.push(
-          ...this.workArray.filter((p) => p.color[1] === "blue")
+          ...this.workArray.filter((p) => p.color[1] === colorBlue)
         );
       }
       if (!blueBtn.classList.contains("active-checkbox")) {
         this.productsColors = this.productsColors.filter(
-          (p) => p.color[1] !== "blue"
+          (p) => p.color[1] !== colorBlue
         );
       }
 
       if (blackBtn.classList.contains("active-checkbox")) {
         this.productsColors = this.productsColors.filter(
-          (p) => p.color[1] !== "black"
+          (p) => p.color[1] !== colorBlack
         );
         this.productsColors.push(
-          ...this.workArray.filter((p) => p.color[1] === "black")
+          ...this.workArray.filter((p) => p.color[1] === colorBlack)
         );
       }
       if (!blackBtn.classList.contains("active-checkbox")) {
         this.productsColors = this.productsColors.filter(
-          (p) => p.color[1] !== "black"
+          (p) => p.color[1] !== colorBlack
         );
       }
       if (this.productsColors.length === 0) {
@@ -393,41 +409,43 @@ class Products {
     const selectManufacturer = (): void => {
       if (xiaomi.classList.contains("active-icon")) {
         this.productsManufacturer = this.productsManufacturer.filter(
-          (p) => p.manufacturer !== "xiaomi"
+          (p) => p.manufacturer !== manufacturerXiaomi
         );
         this.productsManufacturer.push(
-          ...this.workArray.filter((p) => p.manufacturer === "xiaomi")
+          ...this.workArray.filter((p) => p.manufacturer === manufacturerXiaomi)
         );
       }
       if (!xiaomi.classList.contains("active-icon")) {
         this.productsManufacturer = this.productsManufacturer.filter(
-          (p) => p.manufacturer !== "xiaomi"
+          (p) => p.manufacturer !== manufacturerXiaomi
         );
       }
       if (apple.classList.contains("active-icon")) {
         this.productsManufacturer = this.productsManufacturer.filter(
-          (p) => p.manufacturer !== "apple"
+          (p) => p.manufacturer !== manufacturerApple
         );
         this.productsManufacturer.push(
-          ...this.workArray.filter((p) => p.manufacturer === "apple")
+          ...this.workArray.filter((p) => p.manufacturer === manufacturerApple)
         );
       }
       if (!apple.classList.contains("active-icon")) {
         this.productsManufacturer = this.productsManufacturer.filter(
-          (p) => p.manufacturer !== "apple"
+          (p) => p.manufacturer !== manufacturerApple
         );
       }
       if (samsung.classList.contains("active-icon")) {
         this.productsManufacturer = this.productsManufacturer.filter(
-          (p) => p.manufacturer !== "samsung"
+          (p) => p.manufacturer !== manufacturerSamsung
         );
         this.productsManufacturer.push(
-          ...this.workArray.filter((p) => p.manufacturer === "samsung")
+          ...this.workArray.filter(
+            (p) => p.manufacturer === manufacturerSamsung
+          )
         );
       }
       if (!samsung.classList.contains("active-icon")) {
         this.productsManufacturer = this.productsManufacturer.filter(
-          (p) => p.manufacturer !== "samsung"
+          (p) => p.manufacturer !== manufacturerSamsung
         );
       }
       if (this.productsManufacturer.length === 0) {
@@ -439,41 +457,47 @@ class Products {
     const selectCameras = (): void => {
       if (camera1.classList.contains("active-icon")) {
         this.productsCameras = this.productsCameras.filter(
-          (p) => p.numberOfCameras !== 1
+          (p) => p.numberOfCameras !== numberOfCameras1
         );
         this.productsCameras.push(
-          ...this.workArray.filter((p) => p.numberOfCameras === 1)
+          ...this.workArray.filter(
+            (p) => p.numberOfCameras === numberOfCameras1
+          )
         );
       }
       if (!camera1.classList.contains("active-icon")) {
         this.productsCameras = this.productsCameras.filter(
-          (p) => p.numberOfCameras !== 1
+          (p) => p.numberOfCameras !== numberOfCameras1
         );
       }
       if (camera2.classList.contains("active-icon")) {
         this.productsCameras = this.productsCameras.filter(
-          (p) => p.numberOfCameras !== 2
+          (p) => p.numberOfCameras !== numberOfCameras2
         );
         this.productsCameras.push(
-          ...this.workArray.filter((p) => p.numberOfCameras === 2)
+          ...this.workArray.filter(
+            (p) => p.numberOfCameras === numberOfCameras2
+          )
         );
       }
       if (!camera2.classList.contains("active-icon")) {
         this.productsCameras = this.productsCameras.filter(
-          (p) => p.numberOfCameras !== 2
+          (p) => p.numberOfCameras !== numberOfCameras2
         );
       }
       if (camera3.classList.contains("active-icon")) {
         this.productsCameras = this.productsCameras.filter(
-          (p) => p.numberOfCameras !== 3
+          (p) => p.numberOfCameras !== numberOfCameras3
         );
         this.productsCameras.push(
-          ...this.workArray.filter((p) => p.numberOfCameras === 3)
+          ...this.workArray.filter(
+            (p) => p.numberOfCameras === numberOfCameras3
+          )
         );
       }
       if (!camera3.classList.contains("active-icon")) {
         this.productsCameras = this.productsCameras.filter(
-          (p) => p.numberOfCameras !== 3
+          (p) => p.numberOfCameras !== numberOfCameras3
         );
       }
       if (this.productsCameras.length === 0) {
