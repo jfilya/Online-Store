@@ -75,7 +75,7 @@ class FilterValue {
     this.filter.innerHTML += `<div class="filter-value__filter_search">
       <label>Сортировка:</label>
       <select class="search" id="search-ascending-descending">
-        <option id="search-ascending-text" selected>От А до Я</option>
+        <option id="search-ascending-text">От А до Я</option>
         <option id="search-descending-text">От Я до А</option>
         <option id="search-ascending-year">От 2017 до 2022</option>
         <option id="search-descending-year">От 2022 до 2017</option>
@@ -143,6 +143,26 @@ class FilterValue {
       (document.getElementById("camera3") as HTMLDivElement).classList.add(
         "active-icon"
       );
+    }
+    if (localStorage.getItem("sortAscendDescend") == "A-Z") {
+      (
+        document.getElementById("search-ascending-text") as HTMLOptionElement
+      ).setAttribute("selected", "selected");
+    }
+    if (localStorage.getItem("sortAscendDescend") == "Z-A") {
+      (
+        document.getElementById("search-descending-text") as HTMLOptionElement
+      ).setAttribute("selected", "selected");
+    }
+    if (localStorage.getItem("sortAscendDescend") == "2017-2022") {
+      (
+        document.getElementById("search-ascending-year") as HTMLOptionElement
+      ).setAttribute("selected", "selected");
+    }
+    if (localStorage.getItem("sortAscendDescend") == "2022-2017") {
+      (
+        document.getElementById("search-descending-year") as HTMLOptionElement
+      ).setAttribute("selected", "selected");
     }
   }
 }

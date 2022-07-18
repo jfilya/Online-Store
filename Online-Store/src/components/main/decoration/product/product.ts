@@ -255,7 +255,6 @@ class Products {
       ]
     );
   }
-
   public searchOninput(): void {
     (document.getElementById("search-text") as HTMLInputElement).oninput =
       (): void => {
@@ -310,6 +309,12 @@ class Products {
     };
   }
   private sortAscendingDescending(): void {
+    enum sortAscendDescend {
+      AZ = "A-Z",
+      ZA = "Z-A",
+      min = "2017-2022",
+      max = "2022-2017",
+    }
     const elementProducts: HTMLDivElement = document.querySelector(
       ".product"
     ) as HTMLDivElement;
@@ -317,6 +322,7 @@ class Products {
       (document.getElementById("search-ascending-text") as HTMLOptionElement)
         .selected
     ) {
+      localStorage.setItem("sortAscendDescend", sortAscendDescend.AZ);
       for (let i = 0; i < elementProducts.children.length; i++) {
         for (let j = i; j < elementProducts.children.length; j++) {
           {
@@ -339,6 +345,7 @@ class Products {
       (document.getElementById("search-descending-text") as HTMLOptionElement)
         .selected
     ) {
+      localStorage.setItem("sortAscendDescend", sortAscendDescend.ZA);
       for (let i = 0; i < elementProducts.children.length; i++) {
         for (let j = i; j < elementProducts.children.length; j++) {
           {
@@ -361,6 +368,7 @@ class Products {
       (document.getElementById("search-ascending-year") as HTMLOptionElement)
         .selected
     ) {
+      localStorage.setItem("sortAscendDescend", sortAscendDescend.min);
       for (let i = 0; i < elementProducts.children.length; i++) {
         for (let j = i; j < elementProducts.children.length; j++) {
           if (
@@ -379,6 +387,7 @@ class Products {
       (document.getElementById("search-descending-year") as HTMLOptionElement)
         .selected
     ) {
+      localStorage.setItem("sortAscendDescend", sortAscendDescend.max);
       for (let i = 0; i < elementProducts.children.length; i++) {
         for (let j = i; j < elementProducts.children.length; j++) {
           if (
@@ -394,7 +403,6 @@ class Products {
         }
       }
     }
-
     function insertAfter(elem: Element, refElem: Element): Element {
       return (refElem.parentNode as HTMLDivElement).insertBefore(
         elem,
