@@ -1,3 +1,10 @@
+import {
+  ClassNameActive,
+  Color,
+  Manufacturer,
+  NumberOfCameras,
+  sortAscendDescend,
+} from "../enums";
 import "./filter.scss";
 class FilterValue {
   public filter: HTMLDivElement;
@@ -89,81 +96,47 @@ class FilterValue {
     </div>`;
   }
   public localStorageAllFiltersBtn(): void {
-    if (localStorage.getItem("Popular") === "popular") {
+    type LocalStorFunc = (element: string, className: string) => void;
+
+    if (localStorage.getItem("popular") === "popular") {
       (document.getElementById("checkbox") as HTMLDivElement).classList.add(
         "active-checkbox"
       );
     }
-    if (localStorage.getItem("white") === "white") {
-      (document.getElementById("white") as HTMLDivElement).classList.add(
-        "active-checkbox"
-      );
-    }
-    if (localStorage.getItem("purple") === "purple") {
-      (document.getElementById("purple") as HTMLDivElement).classList.add(
-        "active-checkbox"
-      );
-    }
-    if (localStorage.getItem("blue") === "blue") {
-      (document.getElementById("blue") as HTMLDivElement).classList.add(
-        "active-checkbox"
-      );
-    }
-    if (localStorage.getItem("black") === "black") {
-      (document.getElementById("black") as HTMLDivElement).classList.add(
-        "active-checkbox"
-      );
-    }
-    if (localStorage.getItem("xiaomi") === "xiaomi") {
-      (document.getElementById("xiaomi") as HTMLDivElement).classList.add(
-        "active-icon"
-      );
-    }
-    if (localStorage.getItem("apple") === "apple") {
-      (document.getElementById("apple") as HTMLDivElement).classList.add(
-        "active-icon"
-      );
-    }
-    if (localStorage.getItem("samsung") === "samsung") {
-      (document.getElementById("samsung") as HTMLDivElement).classList.add(
-        "active-icon"
-      );
-    }
-    if (localStorage.getItem("camera1") === "1") {
-      (document.getElementById("camera1") as HTMLDivElement).classList.add(
-        "active-icon"
-      );
-    }
-    if (localStorage.getItem("camera2") === "2") {
-      (document.getElementById("camera2") as HTMLDivElement).classList.add(
-        "active-icon"
-      );
-    }
-    if (localStorage.getItem("camera3") === "3") {
-      (document.getElementById("camera3") as HTMLDivElement).classList.add(
-        "active-icon"
-      );
-    }
-    if (localStorage.getItem("sortAscendDescend") == "A-Z") {
-      (
-        document.getElementById("search-ascending-text") as HTMLOptionElement
-      ).setAttribute("selected", "selected");
-    }
-    if (localStorage.getItem("sortAscendDescend") == "Z-A") {
-      (
-        document.getElementById("search-descending-text") as HTMLOptionElement
-      ).setAttribute("selected", "selected");
-    }
-    if (localStorage.getItem("sortAscendDescend") == "2017-2022") {
-      (
-        document.getElementById("search-ascending-year") as HTMLOptionElement
-      ).setAttribute("selected", "selected");
-    }
-    if (localStorage.getItem("sortAscendDescend") == "2022-2017") {
-      (
-        document.getElementById("search-descending-year") as HTMLOptionElement
-      ).setAttribute("selected", "selected");
-    }
+    const LocalStorAddClasses: LocalStorFunc = (element, className) => {
+      if (localStorage.getItem(element) === element) {
+        (document.getElementById(element) as HTMLDivElement).classList.add(
+          className
+        );
+      }
+    };
+    LocalStorAddClasses(Color.white, ClassNameActive.activeCheckbox);
+    LocalStorAddClasses(Color.purple, ClassNameActive.activeCheckbox);
+    LocalStorAddClasses(Color.blue, ClassNameActive.activeCheckbox);
+    LocalStorAddClasses(Color.black, ClassNameActive.activeCheckbox);
+
+    LocalStorAddClasses(Manufacturer.xiaomi, ClassNameActive.activeIcon);
+    LocalStorAddClasses(Manufacturer.apple, ClassNameActive.activeIcon);
+    LocalStorAddClasses(Manufacturer.samsung, ClassNameActive.activeIcon);
+
+    LocalStorAddClasses(NumberOfCameras.camera1, ClassNameActive.activeIcon);
+    LocalStorAddClasses(NumberOfCameras.camera2, ClassNameActive.activeIcon);
+    LocalStorAddClasses(NumberOfCameras.camera3, ClassNameActive.activeIcon);
+
+    type LocalStorSelect = (sortRule: string, idName: string) => void;
+
+    const LocalStorSelectSort: LocalStorSelect = (sortRule, idName) => {
+      if (localStorage.getItem("sortAscendDescend") === sortRule) {
+        (document.getElementById(idName) as HTMLOptionElement).setAttribute(
+          "selected",
+          "selected"
+        );
+      }
+    };
+    LocalStorSelectSort(sortAscendDescend.AZ, "search-ascending-text");
+    LocalStorSelectSort(sortAscendDescend.ZA, "search-descending-text");
+    LocalStorSelectSort(sortAscendDescend.min, "search-ascending-year");
+    LocalStorSelectSort(sortAscendDescend.max, "search-descending-year");
   }
 }
 
