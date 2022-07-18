@@ -540,7 +540,7 @@ class Products {
       }
       if (apple.classList.contains("active-icon")) {
         this.productsManufacturer = this.productsManufacturer.filter(
-          (p) => p.manufacturer !== Manufacturer.xiaomi
+          (p) => p.manufacturer !== Manufacturer.apple
         );
         this.productsManufacturer.push(
           ...this.workArray.filter((p) => p.manufacturer === Manufacturer.apple)
@@ -638,7 +638,7 @@ class Products {
               camera.id === p.id &&
               camera.id === color.id
             ) {
-              this.productsFilters.push(color);
+              this.productsFilters.push(camera);
             }
           });
         });
