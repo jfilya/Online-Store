@@ -258,6 +258,10 @@ class Products {
   public searchOninput(): void {
     (document.getElementById("search-text") as HTMLInputElement).oninput =
       (): void => {
+        localStorage.setItem(
+          "search-text",
+          (document.getElementById("search-text") as HTMLInputElement).value
+        );
         this.searchBoxValue();
       };
   }
@@ -816,6 +820,13 @@ class Products {
       localStorage.clear();
       location.reload();
     });
+  }
+  public localStorInputValue(): void {
+    if (localStorage.getItem("search-text")) {
+      (document.getElementById("search-text") as HTMLInputElement).value =
+        localStorage.getItem("search-text") as string;
+    }
+    this.searchBoxValue();
   }
 }
 

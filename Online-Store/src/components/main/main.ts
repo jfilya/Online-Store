@@ -35,14 +35,15 @@ class Main {
     this.filterValue.sort();
     this.filterValue.reset();
     this.filterValue.localStorageAllFiltersBtn();
-    document.addEventListener("DOMContentLoaded", (): void => {
-      (document.querySelector(".search") as HTMLInputElement).focus();
-    });
   }
   public appendSectionProducts(): void {
     this.products.innerProduct();
   }
   public activeSectionProducts(): void {
+    document.addEventListener("DOMContentLoaded", (): void => {
+      (document.querySelector(".search") as HTMLInputElement).focus();
+      this.products.localStorInputValue();
+    });
     this.products.rangeSlider();
     this.products.searchOninput();
     this.products.sortAscendingDescendingOnchange();
