@@ -1,8 +1,10 @@
 import Products from "./product/product";
-import { Color, Manufacturer, sortAscendDescend } from "./enums";
+import { Color, Manufacturer, sortAscendDescend } from "../../types/enums";
 import * as noUiSlider from "nouislider";
 import "nouislider/dist/nouislider.css";
-import { IProducts, products } from "./product/product-list";
+import { products } from "./product/product-list";
+import IProducts from "../../types/interface";
+import { rangeBuildSliderFunc } from "../../types/types";
 
 class Sort extends Products {
   private workArray: IProducts[];
@@ -44,14 +46,7 @@ class Sort extends Products {
       )[0];
       yEndYear = +(localStorage.getItem("sliderYear") as string).split(",")[1];
     }
-    type rangeBuildSliderFunc = (
-      sliderName: noUiSlider.target,
-      xStart: number,
-      yEnd: number,
-      xMin: number,
-      yMax: number,
-      inputs: HTMLDivElement[]
-    ) => void;
+
     const rangeBuildSlider: rangeBuildSliderFunc = (
       sliderName,
       xStart,

@@ -1,4 +1,5 @@
-import { IProducts, products } from "./product-list";
+import IProducts from "../../../types/interface";
+import { products } from "./product-list";
 import "./product.scss";
 class Products {
   public productItem: HTMLDivElement;

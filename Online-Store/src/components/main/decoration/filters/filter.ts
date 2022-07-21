@@ -4,8 +4,10 @@ import {
   Manufacturer,
   NumberOfCameras,
   sortAscendDescend,
-} from "../enums";
+} from "../../../types/enums";
+import { LocalStorFunc, LocalStorSelect } from "../../../types/types";
 import "./filter.scss";
+
 class FilterValue {
   public filter: HTMLDivElement;
   constructor() {
@@ -96,8 +98,6 @@ class FilterValue {
     </div>`;
   }
   public localStorageAllFiltersBtn(): void {
-    type LocalStorFunc = (element: string, className: string) => void;
-
     if (localStorage.getItem("popular") === "popular") {
       (document.getElementById("checkbox") as HTMLDivElement).classList.add(
         "active-checkbox"
@@ -122,8 +122,6 @@ class FilterValue {
     LocalStorAddClasses(NumberOfCameras.camera1, ClassNameActive.activeIcon);
     LocalStorAddClasses(NumberOfCameras.camera2, ClassNameActive.activeIcon);
     LocalStorAddClasses(NumberOfCameras.camera3, ClassNameActive.activeIcon);
-
-    type LocalStorSelect = (sortRule: string, idName: string) => void;
 
     const LocalStorSelectSort: LocalStorSelect = (sortRule, idName) => {
       if (localStorage.getItem("sortAscendDescend") === sortRule) {
