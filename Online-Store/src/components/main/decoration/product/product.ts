@@ -742,6 +742,14 @@ class Products {
       ).style.display = "none";
     }
   }
+  public localStorageFunction(): void {
+    (
+      document.getElementById("reset-settings") as HTMLButtonElement
+    ).addEventListener("click", (): void => {
+      localStorage.clear();
+      location.reload();
+    });
+  }
   public resetFilters(): void {
     (
       document.getElementById("reset-filters") as HTMLButtonElement
@@ -787,11 +795,10 @@ class Products {
 
       (
         document.querySelector(".slider-value") as noUiSlider.target
-      ).noUiSlider.reset();
+      ).noUiSlider.set([1, 10]);
       (
         document.querySelector(".slider-year") as noUiSlider.target
-      ).noUiSlider.reset();
-
+      ).noUiSlider.set([2017, 2022]);
       this.buildProductitem(this.workArray);
       (
         document.querySelectorAll("option") as unknown as HTMLOptionElement[]
@@ -799,14 +806,7 @@ class Products {
       this.sortAscendingDescending();
     });
   }
-  public localStorageFunction(): void {
-    (
-      document.getElementById("reset-settings") as HTMLButtonElement
-    ).addEventListener("click", (): void => {
-      localStorage.clear();
-      location.reload();
-    });
-  }
+
   public localStorInputValue(): void {
     if (localStorage.getItem("search-text")) {
       (document.getElementById("search-text") as HTMLInputElement).value =
