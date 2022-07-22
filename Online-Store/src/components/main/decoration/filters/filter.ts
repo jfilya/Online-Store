@@ -9,17 +9,17 @@ import { LocalStorFunc, LocalStorSelect } from "../../../types/types";
 import "./filter.scss";
 
 class FilterValue {
-  public filter: HTMLDivElement;
+  private filter: HTMLDivElement;
   constructor() {
     this.filter = document.createElement("div");
   }
-  public innerFilter(): void {
+  innerFilter(): void {
     (document.querySelector("aside") as HTMLElement).innerHTML = ``;
     (document.querySelector("aside") as HTMLElement).append(this.filter);
     this.filter.className = "filter-value";
     this.filter.innerHTML = `<h4>Фильтры</h4>`;
   }
-  public manufacturer(): void {
+  manufacturer(): void {
     this.filter.innerHTML += `<div class="filter-value__filter">Производитель:
       <div class="filter-value__list">
         <div class="favorite-icon filter-value__phone" id="samsung">
@@ -34,7 +34,7 @@ class FilterValue {
       </div>
     </div>`;
   }
-  public numberCameras(): void {
+  numberCameras(): void {
     this.filter.innerHTML += `<div class="filter-value__filter">Количество камер:
     <div class="filter-value__list">
       <div id="camera3" class="favorite-item favorite-camera filter-value__number-cameras">3</div>
@@ -43,7 +43,7 @@ class FilterValue {
     </div>
   </div>`;
   }
-  public colorSort(): void {
+  colorSort(): void {
     this.filter.innerHTML += `<div class="filter-value__filter">Цвет:
       <div class="filter-value__list">
         <div id="white" class="favorite-item favorite-label filter-value__color_white"></div>
@@ -53,12 +53,12 @@ class FilterValue {
       </div>
     </div>`;
   }
-  public popular(): void {
+  popular(): void {
     this.filter.innerHTML += `<div class="filter-value__filter">Только популярные:
         <div id="checkbox" class="favorite-item favorite-label"></div>
     </div>`;
   }
-  public range(): void {
+  range(): void {
     this.filter.innerHTML += `<div class="filter-value__filter filter-value__filter_slider">Количество:
       <div class="slider-value"></div>
       <div class="slider-value__range">
@@ -74,13 +74,13 @@ class FilterValue {
       </div>  
     </div>`;
   }
-  public search(): void {
+  search(): void {
     this.filter.innerHTML += `<div class="filter-value__filter_search">
       <label>Поиск:</label>
       <input placeholder="Введите наименование товара" type="search" class="search" id="search-text" value="">
     </div>`;
   }
-  public sort(): void {
+  sort(): void {
     this.filter.innerHTML += `<div class="filter-value__filter_search">
       <label>Сортировка:</label>
       <select class="search" id="search-ascending-descending">
@@ -91,13 +91,13 @@ class FilterValue {
       </select>
     </div>`;
   }
-  public reset(): void {
+  reset(): void {
     this.filter.innerHTML += `<div class="filter-value__filter_reset">
       <button id="reset-filters">Сброс фильтров</button>
       <button id="reset-settings">Сброс настроек</button>
     </div>`;
   }
-  public localStorageAllFiltersBtn(): void {
+  localStorageAllFiltersBtn(): void {
     if (localStorage.getItem("popular") === "popular") {
       (document.getElementById("checkbox") as HTMLDivElement).classList.add(
         "active-checkbox"

@@ -22,7 +22,7 @@ class Sort extends Products {
     this.productsFilters = [];
     this.productsCameras = [];
   }
-  public rangeSlider(): void {
+  rangeSlider(): void {
     let xStartValue, yEndValue, xStartYear, yEndYear;
     if (!localStorage.getItem("sliderValue")) {
       xStartValue = 1;
@@ -131,7 +131,7 @@ class Sort extends Products {
       ]
     );
   }
-  public searchOninput(): void {
+  searchOninput(): void {
     (document.getElementById("search-text") as HTMLInputElement).oninput =
       (): void => {
         localStorage.setItem(
@@ -179,7 +179,7 @@ class Sort extends Products {
       });
     }
   }
-  public sortAscendingDescendingOnchange(): void {
+  sortAscendingDescendingOnchange(): void {
     (
       document.getElementById(
         "search-ascending-descending"
@@ -511,7 +511,7 @@ class Sort extends Products {
 
     return (this.products = this.productsFilters);
   }
-  public filterBtnAllClick(): void {
+  filterBtnAllClick(): void {
     const sliderValueStart = document.querySelector(
       ".slider-value-start"
     ) as HTMLDivElement;
@@ -606,7 +606,7 @@ class Sort extends Products {
       ).style.display = "none";
     }
   }
-  public localStorageFunction(): void {
+  localStorageFunction(): void {
     (
       document.getElementById("reset-settings") as HTMLButtonElement
     ).addEventListener("click", (): void => {
@@ -614,7 +614,7 @@ class Sort extends Products {
       location.reload();
     });
   }
-  public resetFilters(): void {
+  resetFilters(): void {
     (
       document.getElementById("reset-filters") as HTMLButtonElement
     ).addEventListener("click", () => {
@@ -670,7 +670,7 @@ class Sort extends Products {
       this.sortAscendingDescending();
     });
   }
-  public localStorInputValue(): void {
+  localStorInputValue(): void {
     if (localStorage.getItem("search-text")) {
       (document.getElementById("search-text") as HTMLInputElement).value =
         localStorage.getItem("search-text") as string;

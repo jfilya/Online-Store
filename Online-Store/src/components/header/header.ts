@@ -1,11 +1,11 @@
 import "./header.scss";
 
 class Header {
-  public page: HTMLBodyElement;
+  page: HTMLBodyElement;
   constructor() {
     this.page = document.querySelector("body") as HTMLBodyElement;
   }
-  public innerHeader(): void {
+  innerHeader(): void {
     this.page.innerHTML += `<header class="header">
     <nav class="header__container container">
       <div class="header__logo">

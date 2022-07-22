@@ -2,15 +2,15 @@ import IProducts from "../../../types/interface";
 import { products } from "./product-list";
 import "./product.scss";
 class Products {
-  public productItem: HTMLDivElement;
-  public products: IProducts[];
+  productItem: HTMLDivElement;
+  protected products: IProducts[];
   private localArray: string[];
   constructor() {
     this.products = products;
     this.productItem = document.createElement("div");
     this.localArray = [];
   }
-  public innerProduct(): void {
+  innerProduct(): void {
     (
       document.querySelector("section") as HTMLElement
     ).innerHTML += `<h4>Товары</h4>`;
@@ -20,7 +20,7 @@ class Products {
     (document.querySelector("section") as HTMLElement).append(this.productItem);
     this.productItem.className = "product";
   }
-  public buildProductitem(p: IProducts[]): void {
+  buildProductitem(p: IProducts[]): void {
     (document.querySelector(".product") as HTMLElement).innerHTML = ``;
     for (const prod of p) {
       (
