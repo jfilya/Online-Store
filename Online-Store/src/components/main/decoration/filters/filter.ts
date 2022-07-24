@@ -14,7 +14,6 @@ class FilterValue {
     this.filter = document.createElement("div");
   }
   innerFilter(): void {
-    
     (document.querySelector("aside") as HTMLElement).innerHTML = ``;
     (document.querySelector("aside") as HTMLElement).append(this.filter);
     this.filter.className = "filter-value";

@@ -22,5 +22,4 @@ describe("Main is defined", () => {
     expect(main.activeSectionProducts).toBeDefined();
     expect(main.activeSectionProducts).not.toBeUndefined();
   });
-
 });

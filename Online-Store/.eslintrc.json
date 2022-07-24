@@ -1,5 +1,5 @@
 {
-    "plugins": ["prettier", "import","@typescript-eslint"],
+    "plugins": ["prettier", "import","@typescript-eslint", "jest"],
     "extends": [
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
@@ -24,6 +24,8 @@
         "class-methods-use-this": "off",
         "@typescript-eslint/no-var-requires": "error",
         "@typescript-eslint/no-explicit-any": 2,
+        "@typescript-eslint/unbound-method": "off",
+        "jest/unbound-method": "error",
         "prettier/prettier": [
             "error",
             {
@@ -31,11 +33,5 @@
             }
           ]
     },
-    "ignorePatterns": [".html", "webpack.config.js"],
-    "@typescript-eslint/unbound-method": [
-        "error",
-        {
-          "ignoreStatic": true
-        }
-      ]
+    "ignorePatterns": [".html", "webpack.config.js"]
 }
