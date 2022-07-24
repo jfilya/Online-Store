@@ -685,3 +685,4 @@ class Sort extends Products {
   }
 }
 export default Sort;
+module.exports = Sort;
