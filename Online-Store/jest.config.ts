@@ -6,6 +6,7 @@ module.exports = {
   moduleNameMapper: {
     "^.+\\.(css|less|scss)$": "identity-obj-proxy",
   },
+  testEnvironment: 'jsdom',
 };
 import type { Config } from "@jest/types";
 
