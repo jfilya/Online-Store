@@ -2,23 +2,22 @@ import IProducts from "../../../types/interface";
 import { products } from "./product-list";
 import "./product.scss";
 class Products {
-  productItem: HTMLDivElement;
   protected products: IProducts[];
   private localArray: string[];
   constructor() {
     this.products = products;
-    this.productItem = document.createElement("div");
     this.localArray = [];
   }
   innerProduct(): void {
+    const productItem = document.createElement("div");
     (
       document.querySelector("section") as HTMLElement
     ).innerHTML += `<h4>Товары</h4>`;
     (
       document.querySelector("section") as HTMLElement
     ).innerHTML += `<p class="no-found">Извините, совпадений не обнаружено</p>`;
-    (document.querySelector("section") as HTMLElement).append(this.productItem);
-    this.productItem.className = "product";
+    (document.querySelector("section") as HTMLElement).append(productItem);
+    productItem.className = "product";
   }
   buildProductitem(p: IProducts[]): void {
     (document.querySelector(".product") as HTMLElement).innerHTML = ``;

@@ -31,5 +31,11 @@
             }
           ]
     },
-    "ignorePatterns": [".html", "webpack.config.js"]
+    "ignorePatterns": [".html", "webpack.config.js"],
+    "@typescript-eslint/unbound-method": [
+        "error",
+        {
+          "ignoreStatic": true
+        }
+      ]
 }

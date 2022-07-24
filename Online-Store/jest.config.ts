@@ -3,6 +3,9 @@ module.exports = {
   transform: {
     "^.+\\.tsx?$": "babel-jest",
   },
+  moduleNameMapper: {
+    "^.+\\.(css|less|scss)$": "identity-obj-proxy",
+  },
 };
 import type { Config } from "@jest/types";
 
