@@ -1,15 +1,15 @@
 @import "../../mixin.scss";
 .footer {
-    padding:10px 0;
-    border-top: 1px solid white;
-    border-top-left-radius: 50px;
-    border-top-right-radius: 50px;
-    background: black;
+  padding: 10px 0;
+  border-top: 1px solid $basic-border;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+  background: $basic-background-color;
   &__container {
     @include stretch-wide;
-    p{
-        color:white;
-        font-size: 20px;
+    p {
+      color: $color-text;
+      font-size: 20px;
     }
   }
 }

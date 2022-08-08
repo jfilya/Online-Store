@@ -1,4 +1,5 @@
 @import "../../../../mixin.scss";
+@import "../../../../color.scss";
 h4 {
   font-size: 35px;
   margin-bottom: 20px;
@@ -12,9 +13,9 @@ h4 {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  color: white;
+  color: $color-text;
   backdrop-filter: blur(3px);
-  background-color: rgba(19, 20, 21, 0.3);
+  background-color: $backgroud-btn;
   padding: 30px;
   min-height: 100vh;
   &__list {
@@ -37,11 +38,10 @@ h4 {
       }
       .search {
         backdrop-filter: blur(3px);
-        background-color: rgba(19, 20, 21, 0.3);
-        border: 1px solid #278d9f;
+        background-color: $backgroud-btn;
+        border: 1px solid $color-border;
         border-radius: 15px;
-        background-color: transparent;
-        color: #fff;
+        color: $color-text;
         height: 40px;
         margin-right: 0;
         width: 100%;
@@ -57,10 +57,10 @@ h4 {
       flex-wrap: wrap;
       button {
         backdrop-filter: blur(3px);
-        background-color: rgba(19, 20, 21, 0.3);
-        border: 1px solid #278d9f;
+        background-color: $backgroud-btn;
+        border: 1px solid $color-border;
         border-radius: 20px;
-        color: #fff;
+        color: $color-text;
         cursor: pointer;
         height: 40px;
         margin: 10px 0;
@@ -80,22 +80,19 @@ h4 {
   &__color {
     @include block-btn;
     &_white {
-      background-color: #fff;
+      background-color: $favorite-first;
       &:before {
         color: black;
       }
     }
     &_purple {
-      background-color: purple;
+      background-color: $favorite-second;
     }
     &_blue {
-      background-color: rgb(79, 82, 248);
-    }
-    &_gray {
-      background-color: gray;
+      background-color: $favorite-third;
     }
     &_black {
-      background-color: black;
+      background-color: $favorite-fourth;
     }
   }
 }
@@ -128,14 +125,14 @@ h4 {
 #xiaomi.active-icon {
   transform: scale(1.1);
   img {
-    background-color: cadetblue;
-    border: 3px solid #ffffff;
+    background-color: $active-filters;
+    border: 3px solid $border-filters;
   }
 }
 .favorite-camera.active-icon {
   transform: scale(1.1);
-  border: 3px solid #ffffff;
-  background-color: cadetblue;
+  border: 3px solid $border-filters;
+  background-color: $active-filters;
 }
 
 .slider-value {
