@@ -4,9 +4,11 @@ import "./product.scss";
 class Products {
   protected products: IProducts[];
   private localArray: string[];
+  count: number;
   constructor() {
     this.products = products;
     this.localArray = [];
+    this.count = 0;
   }
   innerProduct(): void {
     const productItem = document.createElement("div");
@@ -39,17 +41,14 @@ class Products {
     }
     this.addCountOfBasket();
   }
-  private addCountOfBasket(): void {
-    let count: number;
+  private amountProductsInBasket(): void {
+    const basketAmount = document.querySelector(
+      ".header__basket-amount"
+    ) as HTMLDivElement;
     if (localStorage.getItem("count") !== "0") {
-      count = +(localStorage.getItem("count") as string);
-      (
-        document.querySelector(".header__basket-amount") as HTMLDivElement
-      ).innerHTML = String(count);
-    } else
-      count = +(
-        document.querySelector(".header__basket-amount") as HTMLDivElement
-      ).innerHTML;
+      this.count = +(localStorage.getItem("count") as string);
+      basketAmount.innerHTML = String(this.count);
+    } else this.count = +basketAmount.innerHTML;
     const array = JSON.parse(localStorage.getItem("localArray") as string) as {
       [key: string]: string;
     };
@@ -60,11 +59,13 @@ class Products {
         }
       }
     });
-    (
-      document.querySelectorAll(
-        ".product__item-btn"
-      ) as unknown as HTMLDivElement[]
-    ).forEach((element) => {
+  }
+  private addCountOfBasket(): void {
+    this.amountProductsInBasket();
+    const productItem = document.querySelectorAll(
+      ".product__item-btn"
+    ) as unknown as HTMLDivElement[];
+    productItem.forEach((element) => {
       if (element.innerHTML == "Добавить в корзину") {
         (element.parentNode as HTMLDivElement).classList.remove(
           "active-before"
@@ -88,52 +89,50 @@ class Products {
           }
         });
       }
-      element.addEventListener("click", () => {
-        if (element.innerHTML == "Добавить в корзину") {
-          if (count == 20) alert("Извините, все слоты заполнены");
-          if (count < 20) {
-            products.forEach((p) => {
-              if ((element.parentNode as HTMLDivElement).id === p.id) {
-                p.btn = "Удалить";
-                this.localArray.push(p.id);
-                localStorage.setItem(
-                  "localArray",
-                  JSON.stringify(this.localArray)
-                );
-              }
-            });
-            element.innerHTML = "Удалить";
-            (element.parentNode as HTMLDivElement).classList.add(
-              "active-before"
-            );
-            count += 1;
-            localStorage.setItem("count", `${count}`);
-            (
-              document.querySelector(".header__basket-amount") as HTMLDivElement
-            ).innerHTML = `${count}`;
-          }
-        } else if (element.innerHTML == "Удалить") {
+      this.addCountForClickBtn(element);
+    });
+  }
+  private addCountForClickBtn(element: HTMLDivElement): void {
+    element.addEventListener("click", () => {
+      if (element.innerHTML == "Добавить в корзину") {
+        if (this.count == 20) alert("Извините, все слоты заполнены");
+        if (this.count < 20) {
           products.forEach((p) => {
             if ((element.parentNode as HTMLDivElement).id === p.id) {
-              p.btn = "Добавить в корзину";
-              this.localArray = this.localArray.filter((f) => f !== p.id);
+              p.btn = "Удалить";
+              this.localArray.push(p.id);
               localStorage.setItem(
                 "localArray",
                 JSON.stringify(this.localArray)
               );
             }
           });
-          element.innerHTML = "Добавить в корзину";
-          (element.parentNode as HTMLDivElement).classList.remove(
-            "active-before"
-          );
-          count -= 1;
-          localStorage.setItem("count", `${count}`);
+          element.innerHTML = "Удалить";
+          (element.parentNode as HTMLDivElement).classList.add("active-before");
+          this.count += 1;
+          localStorage.setItem("count", `${this.count}`);
           (
             document.querySelector(".header__basket-amount") as HTMLDivElement
-          ).innerHTML = `${count}`;
+          ).innerHTML = `${this.count}`;
         }
-      });
+      } else if (element.innerHTML == "Удалить") {
+        products.forEach((p) => {
+          if ((element.parentNode as HTMLDivElement).id === p.id) {
+            p.btn = "Добавить в корзину";
+            this.localArray = this.localArray.filter((f) => f !== p.id);
+            localStorage.setItem("localArray", JSON.stringify(this.localArray));
+          }
+        });
+        element.innerHTML = "Добавить в корзину";
+        (element.parentNode as HTMLDivElement).classList.remove(
+          "active-before"
+        );
+        this.count -= 1;
+        localStorage.setItem("count", `${this.count}`);
+        (
+          document.querySelector(".header__basket-amount") as HTMLDivElement
+        ).innerHTML = `${this.count}`;
+      }
     });
   }
 }
