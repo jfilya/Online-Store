@@ -33,8 +33,7 @@ class Sort extends Products {
     if (!localStorage.getItem("sliderValue")) {
       xStartValue = 1;
       yEndValue = 10;
-    }
-    if (localStorage.getItem("sliderValue")) {
+    } else if (localStorage.getItem("sliderValue")) {
       xStartValue = +(localStorage.getItem("sliderValue") as string).split(
         ","
       )[0];
@@ -45,8 +44,7 @@ class Sort extends Products {
     if (!localStorage.getItem("sliderYear")) {
       xStartYear = 2017;
       yEndYear = 2022;
-    }
-    if (localStorage.getItem("sliderYear")) {
+    } else if (localStorage.getItem("sliderYear")) {
       xStartYear = +(localStorage.getItem("sliderYear") as string).split(
         ","
       )[0];
@@ -311,8 +309,7 @@ class Sort extends Products {
     if (checkboxPupular.classList.contains(ClassNameActive.activeCheckbox)) {
       this.productsPopular = this.workArray.filter((p) => p.popular[1]);
       localStorage.setItem("popular", "popular");
-    }
-    if (!checkboxPupular.classList.contains(ClassNameActive.activeCheckbox)) {
+    } else {
       this.productsPopular = this.workArray;
       localStorage.removeItem("popular");
     }
@@ -329,8 +326,7 @@ class Sort extends Products {
           ...this.workArray.filter((p) => p.color[1] === Color.white)
         );
         localStorage.setItem(Color.white, Color.white);
-      }
-      if (!whiteBtn.classList.contains(ClassNameActive.activeCheckbox)) {
+      } else {
         this.productsColors = this.productsColors.filter(
           (p) => p.color[1] !== Color.white
         );
@@ -345,8 +341,7 @@ class Sort extends Products {
           ...this.workArray.filter((p) => p.color[1] === Color.purple)
         );
         localStorage.setItem(Color.purple, Color.purple);
-      }
-      if (!purpleBtn.classList.contains(ClassNameActive.activeCheckbox)) {
+      } else {
         this.productsColors = this.productsColors.filter(
           (p) => p.color[1] !== Color.purple
         );
@@ -361,8 +356,7 @@ class Sort extends Products {
           ...this.workArray.filter((p) => p.color[1] === Color.blue)
         );
         localStorage.setItem(Color.blue, Color.blue);
-      }
-      if (!blueBtn.classList.contains(ClassNameActive.activeCheckbox)) {
+      } else {
         this.productsColors = this.productsColors.filter(
           (p) => p.color[1] !== Color.blue
         );
@@ -377,8 +371,7 @@ class Sort extends Products {
           ...this.workArray.filter((p) => p.color[1] === Color.black)
         );
         localStorage.setItem(Color.black, Color.black);
-      }
-      if (!blackBtn.classList.contains(ClassNameActive.activeCheckbox)) {
+      } else {
         this.productsColors = this.productsColors.filter(
           (p) => p.color[1] !== Color.black
         );
@@ -401,8 +394,7 @@ class Sort extends Products {
           )
         );
         localStorage.setItem(Manufacturer.xiaomi, Manufacturer.xiaomi);
-      }
-      if (!xiaomi.classList.contains(ClassNameActive.activeIcon)) {
+      } else {
         this.productsManufacturer = this.productsManufacturer.filter(
           (p) => p.manufacturer !== Manufacturer.xiaomi
         );
@@ -416,8 +408,7 @@ class Sort extends Products {
           ...this.workArray.filter((p) => p.manufacturer === Manufacturer.apple)
         );
         localStorage.setItem(Manufacturer.apple, Manufacturer.apple);
-      }
-      if (!apple.classList.contains(ClassNameActive.activeIcon)) {
+      } else {
         this.productsManufacturer = this.productsManufacturer.filter(
           (p) => p.manufacturer !== Manufacturer.apple
         );
@@ -433,8 +424,7 @@ class Sort extends Products {
           )
         );
         localStorage.setItem(Manufacturer.samsung, Manufacturer.samsung);
-      }
-      if (!samsung.classList.contains(ClassNameActive.activeIcon)) {
+      } else {
         this.productsManufacturer = this.productsManufacturer.filter(
           (p) => p.manufacturer !== Manufacturer.samsung
         );
@@ -455,8 +445,7 @@ class Sort extends Products {
           ...this.workArray.filter((p) => p.numberOfCameras === 1)
         );
         localStorage.setItem(NumberOfCameras.camera1, NumberOfCameras.camera1);
-      }
-      if (!camera1.classList.contains(ClassNameActive.activeIcon)) {
+      } else {
         this.productsCameras = this.productsCameras.filter(
           (p) => p.numberOfCameras !== 1
         );
@@ -470,8 +459,7 @@ class Sort extends Products {
           ...this.workArray.filter((p) => p.numberOfCameras === 2)
         );
         localStorage.setItem(NumberOfCameras.camera2, NumberOfCameras.camera2);
-      }
-      if (!camera2.classList.contains(ClassNameActive.activeIcon)) {
+      } else {
         this.productsCameras = this.productsCameras.filter(
           (p) => p.numberOfCameras !== 2
         );
@@ -485,8 +473,7 @@ class Sort extends Products {
           ...this.workArray.filter((p) => p.numberOfCameras === 3)
         );
         localStorage.setItem(NumberOfCameras.camera3, NumberOfCameras.camera3);
-      }
-      if (!camera3.classList.contains(ClassNameActive.activeIcon)) {
+      } else {
         this.productsCameras = this.productsCameras.filter(
           (p) => p.numberOfCameras !== 3
         );
