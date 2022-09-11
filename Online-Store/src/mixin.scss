@@ -1,0 +1,23 @@
+@mixin stretch-wide{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+@mixin stretch-lengthwise {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+@mixin center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@mixin block-btn {
+    width: 40px;
+    height: 40px;
+    border: 1px solid white;
+    border-radius: 15px;
+    cursor:pointer;
+    margin:0 10px;
+}

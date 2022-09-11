@@ -1,0 +1,97 @@
+@import "mixin.scss";
+* {
+  box-sizing: border-box;
+  text-size-adjust: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+ul,
+li,
+body,
+input,
+button {
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
+}
+ul,
+li {
+  list-style-type: none;
+}
+body {
+  font-family: "Neucha", cursive;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  min-width: 320px;
+  position: relative;
+  overflow-x: hidden;
+  background: url("./assets/bg.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center center;
+  min-height: 100vh;
+  @include stretch-lengthwise;
+  color:#fff;
+}
+input {
+  outline: none;
+}
+button {
+  cursor: pointer;
+  outline: none;
+  background: transparent;
+  border: none;
+}
+.container {
+  max-width: 1250px;
+  padding: 0 10px;
+  margin: 0 auto;
+}
+main {
+  display: grid;
+  grid-template-columns: 391px 1fr;
+  min-width: 1250px;
+  align-items: start;
+}
+
+@media screen and (max-width: 1440px) {
+  main {
+    min-width: 100%;
+  }
+}
+
+@media screen and (max-width: 1250px) {
+
+}
+
+@media screen and (max-width: 1024px) {
+}
+
+@media screen and (max-width: 960px) {
+}
+
+@media screen and (max-width: 768px) {
+}
+
+@media screen and (max-width: 576px) {
+}
+
+@media screen and (max-width: 420px) {
+}
+
+@media screen and (max-width: 375px) {
+}
+
+@media screen and (max-width: 320px) {
+}

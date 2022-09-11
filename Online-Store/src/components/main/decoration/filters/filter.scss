@@ -1,0 +1,149 @@
+@import "../../../../mixin.scss";
+@import "../../../../color.scss";
+h4 {
+  font-size: 35px;
+  margin-bottom: 20px;
+}
+.filter {
+  @include stretch-wide;
+  position: sticky;
+  top: 129px;
+}
+.filter-value {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  color: $color-text;
+  backdrop-filter: blur(3px);
+  background-color: $backgroud-btn;
+  padding: 30px;
+  min-height: 100vh;
+  &__list {
+    display: flex;
+    align-items: center;
+  }
+  &__filter {
+    align-items: center;
+    display: flex;
+    margin-bottom: 20px;
+    &_slider {
+      display: block;
+    }
+    &_search {
+      display: block;
+      outline: none;
+      margin-bottom: 20px;
+      label {
+        margin-bottom: 10px;
+      }
+      .search {
+        backdrop-filter: blur(3px);
+        background-color: $backgroud-btn;
+        border: 1px solid $color-border;
+        border-radius: 15px;
+        color: $color-text;
+        height: 40px;
+        margin-right: 0;
+        width: 100%;
+        padding: 0 16px;
+        option {
+          background: black;
+        }
+      }
+    }
+    &_reset {
+      column-gap: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      button {
+        backdrop-filter: blur(3px);
+        background-color: $backgroud-btn;
+        border: 1px solid $color-border;
+        border-radius: 20px;
+        color: $color-text;
+        cursor: pointer;
+        height: 40px;
+        margin: 10px 0;
+        padding: 0 25px;
+      }
+    }
+  }
+  &__phone {
+    img {
+      @include block-btn;
+    }
+  }
+  &__number-cameras {
+    @include block-btn;
+    @include center;
+  }
+  &__color {
+    @include block-btn;
+    &_white {
+      background-color: $favorite-first;
+      &:before {
+        color: black;
+      }
+    }
+    &_purple {
+      background-color: $favorite-second;
+    }
+    &_blue {
+      background-color: $favorite-third;
+    }
+    &_black {
+      background-color: $favorite-fourth;
+    }
+  }
+}
+.favorite-label {
+  transition: 0.5s;
+  @include block-btn;
+  @include center;
+  position: relative;
+  &:before {
+    content: "🗸";
+    transition: 0.5s;
+    position: absolute;
+    opacity: 0;
+    font-size: 35px;
+    top: 10px;
+  }
+}
+.active-checkbox {
+  transform: scale(1.1);
+  &:before {
+    opacity: 1;
+  }
+}
+.favorite-icon,
+.favorite-camera {
+  transition: 0.5s;
+}
+#samsung.active-icon,
+#apple.active-icon,
+#xiaomi.active-icon {
+  transform: scale(1.1);
+  img {
+    background-color: $active-filters;
+    border: 3px solid $border-filters;
+  }
+}
+.favorite-camera.active-icon {
+  transform: scale(1.1);
+  border: 3px solid $border-filters;
+  background-color: $active-filters;
+}
+
+.slider-value {
+  &__range {
+    @include stretch-wide;
+  }
+}
+.slider-value-start,
+.slider-value-end,
+.slider-year-start,
+.slider-year-end {
+  @include block-btn;
+  @include center;
+}
